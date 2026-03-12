@@ -1,0 +1,189 @@
+[
+  {
+    "condition": "BMI > 40",
+    "recommendations": [
+      "Assess whether equipment can adjust to the patient at booking or whether referral is required",
+      "Anaesthetic counselling at 32 weeks"
+    ],
+    "tests": [
+      "Use appropriate blood pressure cuff size",
+      "OGTT at 24 to 28 weeks"
+    ],
+    "ultrasound": [
+      "4-weekly from 32 weeks till birth"
+    ],
+    "reasons": [
+      "Raised body mass index in pregnancy is associated with increased maternal and fetal risk"
+    ],
+    "guideline": "Raised Body Mass Index (BMI) in pregnancy guideline",
+    "source_page": 2
+  },
+  {
+    "condition": "BMI 35-39.9",
+    "recommendations": [
+      "Offer Vitamin D 25 mg or 1000 IU at booking",
+      "16 weeks obstetric antenatal care counselling with possible referral to dietician",
+      "28 weeks plus or minus LMWH",
+      "32 and 36 weeks obstetric antenatal care",
+      "Discuss postpartum prophylaxis"
+    ],
+    "tests": [
+      "Assess VTE risk at booking",
+      "Assess FGR risk at booking",
+      "OGTT at 24 to 28 weeks"
+    ],
+    "ultrasound": [
+      "4-weekly from 32 weeks till birth"
+    ],
+    "reasons": [
+      "Raised BMI increases risk of venous thromboembolism and fetal growth complications"
+    ],
+    "guideline": "Raised Body Mass Index (BMI) in pregnancy guideline",
+    "source_page": 2
+  },
+  {
+    "condition": "Chicken pox",
+    "recommendations": [
+      "Ask the patient not to attend antenatal clinic until all lesions have crusted over",
+      "Confirm immunity and acute infection and treat according to guidelines",
+      "Obstetric antenatal care after FMU scan"
+    ],
+    "tests": [
+      "Bloods post exposure for Ig VZV"
+    ],
+    "ultrasound": [
+      "FMU scan 5 weeks after onset of rash",
+      "Assess for fetal growth restriction",
+      "Assess for limb hypoplasia",
+      "Assess for ventriculomegaly or microcephaly",
+      "Assess for skin or ocular lesions"
+    ],
+    "reasons": [
+      "Chicken pox infection in pregnancy may affect fetal development and growth"
+    ],
+    "guideline": "Chicken pox in pregnancy",
+    "source_page": 2
+  },
+  {
+    "condition": "Chronic Hypertension",
+    "recommendations": [
+      "Change antihypertensives at booking to labetalol, nifedipine or methyldopa",
+      "Give Aspirin 150 mg at 12 weeks",
+      "16 weeks obstetric antenatal care",
+      "Blood pressure and urine should be reviewed at each visit and within 2 to 4 week intervals"
+    ],
+    "tests": [
+      "Use digital blood pressure measurement at all times",
+      "Booking bloods including FBC and U and E",
+      "Repeat blood tests at 28 and 34 weeks",
+      "OGTT at 24 to 28 weeks"
+    ],
+    "ultrasound": [
+      "Anomaly scan plus uterine artery doppler",
+      "If normal UA PI and EFW above 10th centile, serial scans from 32 weeks",
+      "If abnormal UA PI and EFW above 10th centile, serial scans from 28 weeks every 2 to 4 weeks",
+      "If EFW below 10th centile at anomaly scan, refer to FMU"
+    ],
+    "reasons": [
+      "Chronic hypertension in pregnancy increases maternal and placental risk"
+    ],
+    "guideline": "Antenatal Hypertension Pregnancy",
+    "source_page": 2
+  },
+  {
+    "condition": "Epilepsy",
+    "recommendations": [
+      "Preconception folic acid 5 mg",
+      "Booking referral to Obs Med team",
+      "16 weeks obstetric antenatal care review seizure control and SUDEP risk factors"
+    ],
+    "tests": [
+      "No drug levels needed except if seizure frequency increases or doses change"
+    ],
+    "ultrasound": [
+      "20 weeks detailed anomaly scan and ECHO",
+      "4-weekly growth scans from 28 weeks"
+    ],
+    "reasons": [
+      "Epilepsy in pregnancy requires monitoring of maternal seizure control and fetal exposure to antiepileptic medication"
+    ],
+    "guideline": "Epilepsy in pregnancy",
+    "source_page": 2
+  },
+  {
+    "condition": "Congenital uterine anomaly",
+    "recommendations": [
+      "Antenatal care review for scans",
+      "Referral to PTB clinic"
+    ],
+    "tests": [
+      "Renal scan"
+    ],
+    "ultrasound": [
+      "Cervical length scans",
+      "Growth scans from 28 weeks every 4 weeks till birth"
+    ],
+    "reasons": [
+      "Congenital uterine anomalies may increase the risk of preterm birth and affect fetal growth"
+    ],
+    "guideline": "Congenital uterine anomaly guidance",
+    "source_page": 2
+  },
+  {
+    "condition": "DCDA twins",
+    "recommendations": [
+      "16 weeks obstetric antenatal care",
+      "Risk assessment and counselling",
+      "Aspirin if another risk factor is present",
+      "Folic acid 5 mg throughout pregnancy",
+      "Consider Vitamin D",
+      "28 weeks referral for infant feeding and anaesthetist",
+      "Mode of birth discussion at 34 weeks",
+      "Aim for delivery at 37 weeks"
+    ],
+    "tests": [
+      "Blood pressure and urine at 20, 24 and 28 weeks, then every 2 weeks",
+      "FBC at 24, 28 and 34 weeks"
+    ],
+    "ultrasound": [
+      "Dating scan with chorionicity, NT and aneuploidy screening",
+      "20 week anomaly scan",
+      "Cervical length scan",
+      "Growth scans every 4 weeks from 24 weeks"
+    ],
+    "reasons": [
+      "Twin pregnancy requires additional surveillance for maternal and fetal wellbeing"
+    ],
+    "guideline": "Twin pregnancy guidance",
+    "source_page": 7
+  },
+  {
+    "condition": "MCDA twins",
+    "recommendations": [
+      "16 weeks obstetric antenatal care",
+      "Referral to FMU",
+      "Aspirin if another risk factor is present",
+      "Folic acid 5 mg throughout pregnancy",
+      "Consider Vitamin D",
+      "28 weeks referral for infant feeding and anaesthetist",
+      "Mode of birth discussion at 32 weeks",
+      "Aim for delivery at 36 weeks"
+    ],
+    "tests": [
+      "Blood pressure and urine at 20, 24 and 28 weeks, then every 2 weeks",
+      "FBC at 24, 28 and 34 weeks"
+    ],
+    "ultrasound": [
+      "Dating scan with chorionicity, NT and aneuploidy screening",
+      "Cervical length scan from 16 to 20 weeks",
+      "2-weekly scans from 16 weeks",
+      "TTTS screening",
+      "20 to 22 week anomaly scan and fetal echo"
+    ],
+    "reasons": [
+      "MCDA twin pregnancy carries higher fetal risk and needs closer surveillance"
+    ],
+    "guideline": "Twin pregnancy guidance",
+    "source_page": 7
+  }
+]

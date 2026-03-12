@@ -1,80 +1,58 @@
-# ask.py - Antenatal Care Guidelines Clinical Decision Support System
+# ask.py - Optimized for Argumentation Theory Database with JSON API Support
 # =============================================================================
-# VERSION: 5.0
-# LAST UPDATED: 2025-01-21
-#
 # PURPOSE:
-#   Hybrid retrieval system for antenatal care guidelines with patient context
-#   personalization. Combines structured argumentation database with vector RAG
-#   to provide evidence-based clinical recommendations.
+#   Hybrid retrieval system for antenatal care guidelines.
+#   - First attempts structured lookup in argumentation database
+#   - Falls back to vector RAG (Chroma + Ollama) for general queries
+#   - Includes source tracing, fuzzy matching, and deduplication
+#   - Outputs structured JSON for UI/API integration
 #
 # ARCHITECTURE:
-#   1. Load argumentation JSON database (36 conditions, PDF-faithful extraction)
+#   1. Load argumentation JSON database (Toulmin-style schema)
 #   2. Load Chroma vector store for unstructured PDF content
 #   3. For each user question:
-#      a. Parse patient context (if provided via --patient-json/--patient-file)
-#      b. Auto-trigger relevant conditions based on patient parameters
-#      c. Try structured DB lookup with fuzzy matching + triggered conditions
-#      d. If found: format and return structured answer (text + JSON)
-#      e. If not found: retrieve from Chroma, expand via LinkRetrieverAgent,
+#      a. Try structured DB lookup with fuzzy matching
+#      b. If found: format and return structured answer (text + JSON)
+#      c. If not found: retrieve from Chroma, expand via LinkRetrieverAgent,
 #         and generate answer via local Ollama LLM
 #   4. Always display source references with deduplication
 #
-# CLINICAL OUTPUT FORMAT:
-#   📚 Guidelines → ✅ Actions → 🧪 Tests → 📡 Ultrasound → 🔄 Follow Up
-#   → ❓ Clarify → 🔀 Decision Points → 📅 Have Plan
-#
 # USAGE:
-#   # CLI mode (formatted text)
-#   python ask.py
+#   python ask.py                    # CLI mode (formatted text)
+#   python ask.py --json            # JSON mode (structured output)
+#   python ask.py --json --quiet    # JSON only (no text output)
 #
-#   # JSON mode (for UI/API integration)
-#   python ask.py --json
-#
-#   # JSON only (no text, for piping)
-#   python ask.py --json --quiet
-#
-#   # With patient context (JSON string)
-#   python ask.py --patient-json '{"age":42,"bmi":45.0,"medical_history":["DVT"]}'
-#
-#   # With patient context (JSON file)
-#   python ask.py --patient-file patient_profile.json
-#
-#   # Combined modes
-#   python ask.py --json --quiet --patient-file patient.json
-#
-# EXAMPLE QUESTIONS:
-#   - "What care is needed for anaemia?"
-#   - "When should I scan for twins?"
-#   - "Why is aspirin given at 12 weeks?"
-#   - "What is my antenatal schedule?" (with patient context)
-#
-# TYPE 'exit' or 'quit' TO STOP
+#   Type questions like:
+#     - "What care is needed for anaemia?"
+#     - "When should I scan for twins?"
+#     - "Why is aspirin given at 12 weeks?"
+#   Type 'exit' or 'quit' to stop
 # =============================================================================
 
-# =============================================================================
-# IMPORTS
-# =============================================================================
-
-# Path/configuration
+# Import your path/config file.
 import Initialize
 from pathlib import Path
 import sys
-import os
 import argparse
 import json as json_module  # Alias to avoid conflict with variable
-import re
-from datetime import datetime
-from typing import Dict, List, Optional, Any
 
-# LangChain components
+# Import the link-following agent for linked PDFs.
+from link_agent import LinkRetrieverAgent
+
+# Import embedding model wrapper for Chroma retrieval.
 from langchain_huggingface import HuggingFaceEmbeddings
+
+# Import Chroma vector database.
 from langchain_community.vectorstores import Chroma
+
+# Import local Ollama chat model.
 from langchain_community.chat_models import ChatOllama
+
+# Import prompt template for the LLM.
 from langchain_core.prompts import ChatPromptTemplate
 
-# Link agent for expanding context via referenced PDFs
-from link_agent import LinkRetrieverAgent
+# Import the built-in JSON module so we can read the argumentation database.
+import re  # For text processing and citation cleanup
 
 # Optional: fuzzy matching for better condition detection
 try:
@@ -108,271 +86,82 @@ CONDITION_NAMES = list(CONDITION_LOOKUP.keys())
 
 
 # =============================================================================
-# HELPER: PARSE PATIENT CONTEXT
-# =============================================================================
-
-def parse_patient_context(patient_input: str) -> Dict[str, Any]:
-    """
-    Parse patient JSON from string or file path.
-    
-    Args:
-        patient_input: Either a JSON string or a file path to a JSON file
-        
-    Returns:
-        Normalized patient context dictionary with fields:
-        - age: int
-        - gestational_age_weeks: int or null
-        - bmi: float
-        - parity: int
-        - medical_history: list[str]
-        - obstetric_history: list[str]
-        - current_medications: list[str]
-        
-    Example patient JSON:
-    {
-        "age": 42,
-        "gestational_age_weeks": null,
-        "bmi": 45.0,
-        "parity": 2,
-        "medical_history": ["previous history of DVT"],
-        "obstetric_history": [],
-        "current_medications": []
-    }
-    """
-    # Check if input is a file path
-    if os.path.exists(patient_input):
-        with open(patient_input, 'r', encoding='utf-8') as f:
-            return json_module.load(f)
-    
-    # Otherwise treat as JSON string
-    try:
-        return json_module.loads(patient_input)
-    except json_module.JSONDecodeError as e:
-        print(f"❌ Invalid JSON: {e}")
-        return {}
-
-
-# =============================================================================
-# HELPER: GET TRIGGERED CONDITIONS FROM PATIENT CONTEXT
-# =============================================================================
-
-def get_triggered_conditions(patient: Dict[str, Any]) -> List[str]:
-    """
-    Determine which conditions are triggered by patient parameters.
-    
-    This enables personalized care planning by auto-including relevant
-    conditions based on patient demographics, BMI, and medical history.
-    
-    Args:
-        patient: Patient context dictionary from parse_patient_context()
-        
-    Returns:
-        List of condition_name values that should be auto-included
-        
-    Trigger Rules:
-    - Age >= 40 → Advanced Maternal Age
-    - BMI 35-39.9 → BMI 35-39.9
-    - BMI >= 40 → BMI > 40
-    - BMI < 18.5 → Low BMI
-    - Medical history: DVT/thrombosis → BMI pathway (for VTE assessment)
-    - Medical history: diabetes → Pre-existing Diabetes
-    - Medical history: hypertension → Chronic Hypertension
-    - Medical history: epilepsy → Epilepsy
-    - Medical history: sickle cell → Sickle Cell Disease
-    - Obstetric history: pre-eclampsia → Previous PET
-    - Obstetric history: caesarean → Previous Caesarean Section
-    - Obstetric history: twins → Twins (requires DCDA/MCDA specification)
-    """
-    triggered = []
-    
-    # Age-based triggers
-    if patient.get("age", 0) >= 40:
-        triggered.append("advanced maternal age-> 40")
-    
-    # BMI-based triggers
-    bmi = patient.get("bmi")
-    if bmi is not None:
-        if 35 <= bmi < 40:
-            triggered.append("bmi 35-39.9")
-        elif bmi >= 40:
-            triggered.append("bmi > 40")
-        elif bmi < 18.5:
-            triggered.append("low bmi < 18.5")
-    
-    # Medical history triggers (case-insensitive keyword matching)
-    medical_history = " ".join(patient.get("medical_history", [])).lower()
-    if "dvt" in medical_history or "thrombosis" in medical_history or "clot" in medical_history:
-        # VTE risk - boost BMI recommendations that mention LMWH
-        triggered.append("bmi > 40")  # Ensure BMI pathway is included for VTE assessment
-    if "diabetes" in medical_history or "type 1" in medical_history or "type 2" in medical_history:
-        triggered.append("type 1 and 2 diabetes - pre-pregnant diabetes")
-    if "hypertension" in medical_history or "htn" in medical_history:
-        triggered.append("chronic hypertension")
-    if "epilepsy" in medical_history or "seizure" in medical_history:
-        triggered.append("epilepsy")
-    if "sickle" in medical_history or "haemoglobinopathy" in medical_history:
-        triggered.append("sickle cell disease")
-    
-    # Obstetric history triggers
-    obstetric_history = " ".join(patient.get("obstetric_history", [])).lower()
-    if "pre-eclampsia" in obstetric_history or "pet" in obstetric_history:
-        triggered.append("previous pet")
-    if "caesarean" in obstetric_history or "c-section" in obstetric_history:
-        triggered.append("previous caesarean section")
-    if "twins" in obstetric_history or "multiple" in obstetric_history:
-        triggered.append("twins")  # Will need user to specify DCDA/MCDA
-    
-    return triggered
-
-
-# =============================================================================
 # HELPER: FIND A CONDITION IN THE ARGUMENT DB
 # =============================================================================
 
-def find_condition_in_question(question: str, triggered_conditions: List[str] = None) -> Optional[Dict]:
+def find_condition_in_question(question: str):
     """
-    Try to identify whether the user's question mentions one of the known
-    conditions in the argumentation database.
+    Try to identify whether the user's question mentions
+    one of the known conditions in the argumentation database.
     
     Uses a three-tier approach:
-    1. Exact substring match (fast path)
-    2. Fuzzy matching if available (flexible, >=60% similarity)
+    1. Exact substring match (fast)
+    2. Fuzzy matching if available (flexible)
     3. Synonym mapping for common medical terms
     
-    Also includes auto-triggered conditions from patient context.
-    
-    Args:
-        question: User's question string
-        triggered_conditions: Optional list of condition names triggered by patient context
-        
-    Returns:
-        Matching condition record (dict) if found, else None.
-        If multiple conditions match, returns merged condition record.
+    Returns the matching condition record if found, else None.
     """
     q_lower = question.lower()
-    matched_items = []
     
     # Tier 1: Try exact substring match first (fast path)
     for condition_name in CONDITION_NAMES:
         if condition_name in q_lower:
-            matched_items.append(CONDITION_LOOKUP[condition_name])
-    
-    # Add auto-triggered conditions from patient context
-    if triggered_conditions:
-        for trigger in triggered_conditions:
-            # Try to find matching condition name
-            for condition_name in CONDITION_NAMES:
-                if trigger.lower() in condition_name and CONDITION_LOOKUP[condition_name] not in matched_items:
-                    matched_items.append(CONDITION_LOOKUP[condition_name])
+            return CONDITION_LOOKUP[condition_name]
     
     # Tier 2: Try fuzzy matching if available (more flexible)
-    if FUZZY_AVAILABLE and not matched_items:
+    if FUZZY_AVAILABLE:
         # Extract potential condition keywords from question
         # score_cutoff=60 means >=60% similarity required
         match = process.extractOne(q_lower, CONDITION_NAMES, score_cutoff=60)
         if match:
             matched_name = match[0]
-            matched_items.append(CONDITION_LOOKUP[matched_name])
+            return CONDITION_LOOKUP[matched_name]
     
     # Tier 3: Try synonym mapping for common medical terms
     # Maps colloquial/abbreviated terms to formal condition names
-    if not matched_items:
-        synonym_map = {
-            "high blood pressure": "chronic hypertension",
-            "hypertension": "chronic hypertension",
-            "htn": "chronic hypertension",
-            "low iron": "anaemia",
-            "low hb": "anaemia",
-            "gestational diabetes": "gestational diabetes",
-            "gdm": "gestational diabetes",
-            "reduced movements": "reduced fetal movements",
-            "rfm": "reduced fetal movements",
-            "small baby": "sga baby",
-            "large baby": "large baby",
-            "lga": "large baby",
-            "fgr": "fgr baby",
-            "growth restriction": "fgr baby",
-            "placenta previa": "placenta praevia / low lying",
-            "previa": "placenta praevia / low lying",
-            "twin": "twins",
-            "twins dcda": "twins – dcda",
-            "twins mcda": "twins – mcda",
-            "diabetes type 1": "type 1 and 2 diabetes - pre-pregnant diabetes",
-            "diabetes type 2": "type 1 and 2 diabetes - pre-pregnant diabetes",
-            "pre-existing diabetes": "type 1 and 2 diabetes - pre-pregnant diabetes",
-        }
-        
-        for synonym, condition_key in synonym_map.items():
-            if synonym in q_lower:
-                # Find matching condition in lookup
-                for cond_name in CONDITION_NAMES:
-                    if condition_key.lower() in cond_name:
-                        matched_items.append(CONDITION_LOOKUP[cond_name])
-                        break
-    
-    # Return single item or merge multiple if triggered
-    if len(matched_items) == 1:
-        return matched_items[0]
-    elif len(matched_items) > 1:
-        # Merge multiple conditions into a combined response
-        return merge_conditions(matched_items)
-    
-    return None
-
-
-# =============================================================================
-# HELPER: MERGE MULTIPLE CONDITIONS
-# =============================================================================
-
-def merge_conditions(condition_list: List[Dict]) -> Dict:
-    """
-    Merge multiple condition records into a single response.
-    Useful when patient triggers multiple conditions (e.g., AMA + BMI >40).
-    
-    Args:
-        condition_list: List of condition records to merge
-        
-    Returns:
-        Merged condition record with combined arguments
-    """
-    merged = {
-        "condition_id": "MERGED-" + "-".join([c["condition_id"] for c in condition_list]),
-        "condition_name": "Multiple Conditions: " + ", ".join([c["condition_name"] for c in condition_list]),
-        "criteria": "Patient meets criteria for: " + "; ".join([c.get("criteria", "N/A") for c in condition_list]),
-        "source_page": ", ".join([str(c.get("source_page", "N/A")) for c in condition_list]),
-        "source_reference_file": ", ".join([c.get("source_reference_file", "N/A") for c in condition_list]),
-        "arguments": []
+    synonym_map = {
+        "high blood pressure": "chronic hypertension",
+        "hypertension": "chronic hypertension",
+        "htn": "chronic hypertension",
+        "low iron": "anaemia",
+        "low hb": "anaemia",
+        "gestational diabetes": "gestational diabetes",
+        "gdm": "gestational diabetes",
+        "reduced movements": "reduced fetal movements",
+        "rfm": "reduced fetal movements",
+        "small baby": "sga baby",
+        "large baby": "large baby",
+        "lga": "large baby",
+        "fgr": "fgr baby",
+        "growth restriction": "fgr baby",
+        "placenta previa": "placenta praevia / low lying",
+        "previa": "placenta praevia / low lying",
+        "twin": "twins",
+        "twins dcda": "twins (dcda)",
+        "twins mcda": "twins (mcda)",
+        "diabetes type 1": "type 1 and 2 diabetes (pre-pregnant)",
+        "diabetes type 2": "type 1 and 2 diabetes (pre-pregnant)",
+        "pre-existing diabetes": "type 1 and 2 diabetes (pre-pregnant)",
     }
     
-    # Combine all arguments, deduplicating by claim
-    seen_claims = set()
-    for cond in condition_list:
-        for arg in cond.get("arguments", []):
-            claim_key = (arg.get("claim"), arg.get("timing"))
-            if claim_key not in seen_claims:
-                seen_claims.add(claim_key)
-                merged["arguments"].append(arg)
+    for synonym, condition_key in synonym_map.items():
+        if synonym in q_lower and condition_key in CONDITION_LOOKUP:
+            return CONDITION_LOOKUP[condition_key]
     
-    return merged
+    return None
 
 
 # =============================================================================
 # HELPER: DETECT WHAT TYPE OF INFORMATION IS ASKED FOR
 # =============================================================================
 
-def detect_question_type(question: str) -> str:
+def detect_question_type(question: str):
     """
     Decide what the user is asking for:
     recommendations, tests, ultrasound, reasons, or full summary.
     
     Uses weighted keyword matching for better accuracy than simple
     substring checks. Returns the category with highest keyword match score.
-    
-    Args:
-        question: User's question string
-        
-    Returns:
-        One of: "tests", "ultrasound", "reasons", "recommendations", "summary"
     """
     q_lower = question.lower()
     
@@ -429,12 +218,6 @@ def classify_claim(claim: str) -> str:
     Used to organize nested arguments for display in the formatted answer.
     
     Classification is based on keyword presence in the claim text.
-    
-    Args:
-        claim: Claim text from argument database
-        
-    Returns:
-        One of: "ultrasound", "tests", "reasons", "recommendations"
     """
     claim_lower = claim.lower()
     
@@ -452,19 +235,11 @@ def classify_claim(claim: str) -> str:
 # HELPER: FORMAT THE ARGUMENT DB ANSWER FOR THE USER (TEXT)
 # =============================================================================
 
-def format_argument_answer(item: Dict, question_type: str) -> str:
+def format_argument_answer(item, question_type: str):
     """
     Build a clinical decision support answer from the structured argumentation database.
-    
-    Output format matches clinical workflow:
-    Guidelines → Actions → Tests → Ultrasound → Follow Up → Clarify → Decision Points → Plan
-    
-    Args:
-        item: Condition record from argument database
-        question_type: Type of information requested (from detect_question_type)
-        
-    Returns:
-        Formatted string for CLI display with emojis and sections
+    Output format matches clinical workflow: Guidelines → Actions → Tests → Ultrasound → Follow Up → Clarify → Decision Points → Plan
+    Returns formatted string for CLI display.
     """
     lines = []
     
@@ -516,7 +291,7 @@ def format_argument_answer(item: Dict, question_type: str) -> str:
     lines.append("📚 Guidelines:")
     if source_ref and source_ref != "ANTENATAL CARE SCHEDULE.pdf":
         lines.append(f"  • {source_ref}")
-    lines.append(f"  • ANTENATAL CARE SCHEDULE CHEAT SHEET (Page {source_page})")
+    lines.append(f"  • ANTENATAL CARE SCHEDULE  (Page {source_page})")
     lines.append("")
     
     # ========== ACTIONS SECTION ==========
@@ -619,25 +394,15 @@ def format_argument_answer(item: Dict, question_type: str) -> str:
 # HELPER: GENERATE STRUCTURED JSON RESPONSE FOR UI/API
 # =============================================================================
 
-def generate_json_response(item: Dict, question: str, question_type: str, 
-                          patient_context: Dict = None, source: str = "structured_db") -> Dict:
+def generate_json_response(item, question: str, question_type: str, source: str = "structured_db"):
     """
     Generate a structured JSON response suitable for UI/API consumption.
     
-    Args:
-        item: Condition record from argument database
-        question: User's question string
-        question_type: Type of information requested
-        patient_context: Optional patient context for personalization
-        source: Source of response ("structured_db" or "vector_rag")
-        
-    Returns:
-        Dictionary with:
-        - metadata: query info, timestamp, source, patient_context
-        - condition: condition details
-        - sections: Guidelines, Actions, Tests, Ultrasound, FollowUp, Clarify, DecisionPoints, Plan
-        - personalization: risk flags and gestational filtering (if patient_context provided)
-        - raw_data: original arguments for debugging
+    Returns a dictionary with:
+    - metadata: query info, timestamp, source
+    - condition: condition details
+    - sections: Guidelines, Actions, Tests, Ultrasound, FollowUp, Clarify, DecisionPoints, Plan
+    - raw_data: original arguments for debugging
     """
     # Extract condition info
     condition_name = item.get("condition_name", "Unknown Condition")
@@ -738,9 +503,8 @@ def generate_json_response(item: Dict, question: str, question_type: str,
             "query": question,
             "question_type": question_type,
             "source": source,
-            "timestamp": datetime.now().isoformat(),
-            "condition_matched": condition_name,
-            "patient_context": patient_context  # Include patient context if provided
+            "timestamp": None,  # Will be set at runtime
+            "condition_matched": condition_name
         },
         "condition": {
             "id": item.get("condition_id"),
@@ -755,12 +519,12 @@ def generate_json_response(item: Dict, question: str, question_type: str,
         "sections": {
             "guidelines": [
                 {"text": source_ref} if source_ref and source_ref != "ANTENATAL CARE SCHEDULE.pdf" else None,
-                {"text": f"ANTENATAL CARE SCHEDULE (Page {source_page})"}
+                {"text": f"ANTENATAL CARE SCHEDULE CHEAT SHEET (Page {source_page})"}
             ],
             "actions": actions if actions else None,
             "tests": tests if tests else None,
             "ultrasound": ultrasounds if ultrasounds else None,
-            "follow_up": follow_up_items if follow_up_items else None,
+            "follow_up": follow_up_items if follow_up_items else (default_followup[:3] if (default_followup := [a for a in actions if any(kw in a.get("claim", "").lower() for kw in ["weeks", "booking", "visit"])]) else None),
             "clarify": [f"Does patient meet criteria: {criteria}?"] + clarify_items if (clarify_items or criteria) else None,
             "decision_points": decision_points if decision_points else None,
             "plan": {
@@ -776,47 +540,76 @@ def generate_json_response(item: Dict, question: str, question_type: str,
     # Clean up None values in guidelines
     response["sections"]["guidelines"] = [g for g in response["sections"]["guidelines"] if g is not None]
     
-    # Add personalization flags if patient context provided
-    if patient_context:
-        response["personalization"] = {
-            "age_risk": patient_context.get("age", 0) >= 40,
-            "bmi_category": categorize_bmi(patient_context.get("bmi")),
-            "vte_risk": any(kw in " ".join(patient_context.get("medical_history", [])).lower() 
-                           for kw in ["dvt", "thrombosis", "clot"]),
-            "gestational_age": patient_context.get("gestational_age_weeks"),
-            "triggered_conditions": get_triggered_conditions(patient_context)
-        }
-    
     return response
 
-
 # =============================================================================
-# HELPER: CATEGORIZE BMI
+# GET JSON OBJECT OF PATIENTS CONTEXT FROM ALLAN MODULE
 # =============================================================================
-
-def categorize_bmi(bmi: float) -> str:
+def parse_patient_context(patient_input: str) -> dict:
     """
-    Categorize BMI for risk stratification.
+    Parse patient JSON from string or file path.
+    Returns normalized patient context dict.
+    """
+    import os
+    import json as json_module
     
-    Args:
-        bmi: Body Mass Index value
-        
-    Returns:
-        BMI category string
+    # Check if input is a file path
+    if os.path.exists(patient_input):
+        with open(patient_input, 'r', encoding='utf-8') as f:
+            return json_module.load(f)
+    
+    # Otherwise treat as JSON string
+    try:
+        return json_module.loads(patient_input)
+    except json_module.JSONDecodeError as e:
+        print(f"❌ Invalid JSON: {e}")
+        return {}
+    
+def get_triggered_conditions(patient: dict) -> list[str]:
     """
-    if bmi is None:
-        return "unknown"
-    elif bmi < 18.5:
-        return "underweight"
-    elif bmi < 25:
-        return "normal"
-    elif bmi < 30:
-        return "overweight"
-    elif bmi < 40:
-        return "obese_class_1_2"
-    else:
-        return "obese_class_3"
-
+    Determine which conditions are triggered by patient parameters.
+    Returns list of condition_name values that should be auto-included.
+    """
+    triggered = []
+    
+    # Age-based triggers
+    if patient.get("age", 0) >= 40:
+        triggered.append("advanced maternal age-> 40")
+    
+    # BMI-based triggers
+    bmi = patient.get("bmi")
+    if bmi is not None:
+        if 35 <= bmi < 40:
+            triggered.append("bmi 35-39.9")
+        elif bmi >= 40:
+            triggered.append("bmi > 40")
+        elif bmi < 18.5:
+            triggered.append("low bmi < 18.5")
+    
+    # Medical history triggers
+    medical_history = " ".join(patient.get("medical_history", [])).lower()
+    if "dvt" in medical_history or "thrombosis" in medical_history or "clot" in medical_history:
+        # VTE risk - boost BMI recommendations that mention LMWH
+        triggered.append("bmi > 40")  # Ensure BMI pathway is included for VTE assessment
+    if "diabetes" in medical_history or "type 1" in medical_history or "type 2" in medical_history:
+        triggered.append("type 1 and 2 diabetes - pre-pregnant diabetes")
+    if "hypertension" in medical_history or "htn" in medical_history:
+        triggered.append("chronic hypertension")
+    if "epilepsy" in medical_history or "seizure" in medical_history:
+        triggered.append("epilepsy")
+    if "sickle" in medical_history or "haemoglobinopathy" in medical_history:
+        triggered.append("sickle cell disease")
+    
+    # Obstetric history triggers
+    obstetric_history = " ".join(patient.get("obstetric_history", [])).lower()
+    if "pre-eclampsia" in obstetric_history or "pet" in obstetric_history:
+        triggered.append("previous pet")
+    if "caesarean" in obstetric_history or "c-section" in obstetric_history:
+        triggered.append("previous caesarean section")
+    if "twins" in obstetric_history or "multiple" in obstetric_history:
+        triggered.append("twins")  # Will need user to specify DCDA/MCDA
+    
+    return triggered
 
 # =============================================================================
 # MAIN PROGRAM FLOW
@@ -827,19 +620,15 @@ def main():
     Main entry point for the antenatal care Q&A system.
     
     Implements hybrid retrieval:
-    1. Parse patient context (if provided)
-    2. Auto-trigger relevant conditions based on patient parameters
-    3. Try structured argumentation database first
-    4. Fall back to Chroma + Ollama RAG if no structured match
-    5. Always deduplicate source references for clean output
-    6. Support JSON output for UI/API integration
+    1. Try structured argumentation database first
+    2. Fall back to Chroma + Ollama RAG if no structured match
+    3. Always deduplicate source references for clean output
+    4. Support JSON output for UI/API integration
     """
     # Parse command-line arguments
     parser = argparse.ArgumentParser(description="Antenatal Care Guidelines Q&A System")
     parser.add_argument("--json", action="store_true", help="Output results as JSON")
     parser.add_argument("--quiet", action="store_true", help="Suppress text output (JSON mode only)")
-    parser.add_argument("--patient-json", type=str, help="Patient profile JSON string")
-    parser.add_argument("--patient-file", type=str, help="Path to patient profile JSON file")
     args = parser.parse_args()
     
     # Get the Chroma DB path from Initialize.py.
@@ -891,26 +680,12 @@ def main():
         )
     ])
 
-    # Parse patient context if provided
-    patient_context = None
-    if args.patient_json or args.patient_file:
-        patient_input = args.patient_json or args.patient_file
-        patient_context = parse_patient_context(patient_input)
-        if not args.quiet:
-            print(f"👤 Patient context loaded: Age={patient_context.get('age')}, BMI={patient_context.get('bmi')}")
-
-    # Get triggered conditions from patient context
-    triggered = get_triggered_conditions(patient_context) if patient_context else []
-    if triggered and not args.quiet:
-        print(f"🎯 Auto-triggered conditions: {', '.join(triggered)}")
-
     # Print startup message with system status (unless quiet mode)
     if not args.quiet:
         print(f"✅ Loaded Chroma DB from: {chroma_path}")
         print(f"✅ Loaded {len(argument_data)} conditions from argumentation database")
         print(f"✅ Fuzzy matching: {'Enabled' if FUZZY_AVAILABLE else 'Disabled (install fuzzywuzzy for better matching)'}")
         print(f"✅ Output mode: {'JSON' if args.json else 'Formatted Text'}")
-        print(f"✅ Patient context: {'Yes' if patient_context else 'No'}")
         print("\n💡 Tip: Ask about specific conditions like 'anaemia', 'gestational diabetes', or 'twins'")
         print("Type a question (or type 'exit')\n")
 
@@ -934,8 +709,7 @@ def main():
             # =================================================================
 
             # Try to find a matching condition inside the user's question.
-            # Include triggered conditions from patient context
-            matched_item = find_condition_in_question(question, triggered_conditions=triggered)
+            matched_item = find_condition_in_question(question)
 
             # If a condition was found, answer directly from the structured DB.
             if matched_item is not None:
@@ -944,10 +718,8 @@ def main():
 
                 # Generate both text and JSON responses
                 answer_text = format_argument_answer(matched_item, question_type)
-                json_response = generate_json_response(
-                    matched_item, question, question_type, 
-                    patient_context=patient_context, source="structured_db"
-                )
+                json_response = generate_json_response(matched_item, question, question_type, source="structured_db")
+                json_response["metadata"]["timestamp"] = __import__("datetime").datetime.now().isoformat()
                 
                 # Output based on mode
                 if args.json:
@@ -1025,10 +797,9 @@ def main():
                 "metadata": {
                     "query": question,
                     "source": "vector_rag",
-                    "timestamp": datetime.now().isoformat(),
+                    "timestamp": __import__("datetime").datetime.now().isoformat(),
                     "condition_matched": None,
-                    "retrieved_pages": list(set([d.metadata.get('page', 'N/A') for d in docs])),
-                    "patient_context": patient_context
+                    "retrieved_pages": list(set([d.metadata.get('page', 'N/A') for d in docs]))
                 },
                 "answer": {
                     "text": answer.content,
@@ -1094,7 +865,7 @@ def main():
             error_response = {
                 "error": str(e),
                 "query": question if 'question' in locals() else None,
-                "timestamp": datetime.now().isoformat()
+                "timestamp": __import__("datetime").datetime.now().isoformat()
             }
             if args.json:
                 print(json_module.dumps({"error": error_response}, indent=2))

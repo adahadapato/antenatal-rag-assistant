@@ -19,7 +19,7 @@ from langchain_core.documents import Document
 #doc_path = os.path.join(folder_path, pdf_filename)
 #Initialize.ensure_paths()
 doc_path = Initialize.doc_path
-chroma_path = Initialize.db_path
+chroma_path = Initialize.vector_db_pathdb_path
 
 # ==========================================
 # 1) SETUP EMBEDDINGS
