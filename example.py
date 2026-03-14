@@ -1,11 +1,12 @@
 # minimal_example.py
-from pipeline_agent import query_guidelines
+from pipeline_agent_sqlite import query_guidelines
+#from pipeline_agent_json import query_guidelines
 import json
 
 # Define patient
 patient = {
   "age": 42,
-  "gestational_age_weeks": null,
+  "gestational_age_weeks":28 ,
   "bmi": 45.0,
   "parity": 2,
   "medical_history": [
@@ -17,7 +18,7 @@ patient = {
 
 # Query guidelines
 result = query_guidelines(
-    query="What antenatal care is needed?",
+    query="What care is needed for anaemia?",
     patient_context=patient
 )
 

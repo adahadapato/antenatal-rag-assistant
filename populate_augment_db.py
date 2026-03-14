@@ -10,7 +10,7 @@ json_path = Initialize.augmented_db_json
 # Verify files exist
 if not Path(db_path).exists():
     print(f"❌ Database not found at {db_path}")
-    print("💡 Run setup_db_schema.py first!")
+    print("💡 Run setup_augment_db_schema.py first!")
     exit(1)
 
 if not Path(json_path).exists():
@@ -75,29 +75,31 @@ for condition in conditions:
             category = arg.get("category", "recommendation")
             source_column = arg.get("source_column", "Antenatal Visits")
             arg_id = arg.get("arg_id", "")
+            # UPDATED: Extract guideline_reference from JSON
+            guideline_ref = arg.get("guideline_reference", condition.get("source_reference_file", ""))
             
             # Insert into arguments table (keeps original structure)
             cursor.execute("""
-                INSERT INTO arguments (condition_id, arg_id, claim, timing, category, source_column)
-                VALUES (?, ?, ?, ?, ?, ?)
-            """, (cond_id, arg_id, claim, timing, category, source_column))
+                INSERT INTO arguments (condition_id, arg_id, claim, timing, category, source_column, guideline_reference)
+                VALUES (?, ?, ?, ?, ?, ?, ?)
+            """, (cond_id, arg_id, claim, timing, category, source_column, guideline_ref))
             
             # Also categorize into specific tables for easier querying
             if category == "ultrasound":
                 cursor.execute("""
-                    INSERT INTO ultrasound (condition_id, claim, timing, category, source_column)
-                    VALUES (?, ?, ?, ?, ?)
-                """, (cond_id, claim, timing, category, source_column))
+                    INSERT INTO ultrasound (condition_id, claim, timing, category, source_column, guideline_reference)
+                    VALUES (?, ?, ?, ?, ?, ?)
+                """, (cond_id, claim, timing, category, source_column, guideline_ref))
             elif category == "test":
                 cursor.execute("""
-                    INSERT INTO tests (condition_id, claim, timing, category, source_column)
-                    VALUES (?, ?, ?, ?, ?)
-                """, (cond_id, claim, timing, category, source_column))
+                    INSERT INTO tests (condition_id, claim, timing, category, source_column, guideline_reference)
+                    VALUES (?, ?, ?, ?, ?, ?)
+                """, (cond_id, claim, timing, category, source_column, guideline_ref))
             else:
                 cursor.execute("""
-                    INSERT INTO recommendations (condition_id, claim, timing, category, source_column)
-                    VALUES (?, ?, ?, ?, ?)
-                """, (cond_id, claim, timing, category, source_column))
+                    INSERT INTO recommendations (condition_id, claim, timing, category, source_column, guideline_reference)
+                    VALUES (?, ?, ?, ?, ?, ?)
+                """, (cond_id, claim, timing, category, source_column, guideline_ref))
             
             arguments_inserted += 1
         

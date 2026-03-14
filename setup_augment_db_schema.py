@@ -41,6 +41,7 @@ cursor.execute("""
 """)
 
 # Create arguments table (strict PDF-faithful - NO warrant/rebuttal)
+# UPDATED: Added guideline_reference column
 print("📋 Creating arguments table...")
 cursor.execute("""
     CREATE TABLE IF NOT EXISTS arguments (
@@ -51,11 +52,13 @@ cursor.execute("""
         timing TEXT,
         category TEXT,
         source_column TEXT,
+        guideline_reference TEXT,
         FOREIGN KEY (condition_id) REFERENCES conditions(condition_id)
     )
 """)
 
 # Create recommendations table (strict PDF-faithful)
+# UPDATED: Added guideline_reference column
 print("📋 Creating recommendations table...")
 cursor.execute("""
     CREATE TABLE IF NOT EXISTS recommendations (
@@ -65,11 +68,13 @@ cursor.execute("""
         timing TEXT,
         category TEXT,
         source_column TEXT,
+        guideline_reference TEXT,
         FOREIGN KEY (condition_id) REFERENCES conditions(condition_id)
     )
 """)
 
 # Create tests table (strict PDF-faithful)
+# UPDATED: Added guideline_reference column
 print("📋 Creating tests table...")
 cursor.execute("""
     CREATE TABLE IF NOT EXISTS tests (
@@ -79,11 +84,13 @@ cursor.execute("""
         timing TEXT,
         category TEXT,
         source_column TEXT,
+        guideline_reference TEXT,
         FOREIGN KEY (condition_id) REFERENCES conditions(condition_id)
     )
 """)
 
 # Create ultrasound table (strict PDF-faithful)
+# UPDATED: Added guideline_reference column
 print("📋 Creating ultrasound table...")
 cursor.execute("""
     CREATE TABLE IF NOT EXISTS ultrasound (
@@ -93,6 +100,7 @@ cursor.execute("""
         timing TEXT,
         category TEXT,
         source_column TEXT,
+        guideline_reference TEXT,
         FOREIGN KEY (condition_id) REFERENCES conditions(condition_id)
     )
 """)

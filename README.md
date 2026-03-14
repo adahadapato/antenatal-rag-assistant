@@ -5,14 +5,14 @@ This is a Retrieval-Augmented Generation (RAG) system for antenatal care guidanc
 
 ## Architecture
 - **Dual Database System**: 
-  - Structured JSON database (`argument_db3.json`, ) for condition-specific recommendations, tests, ultrasound monitoring, and clinical rationale
+  - Structured JSON database (`argument_db4.json`, ) for condition-specific recommendations, tests, ultrasound monitoring, and clinical rationale
   - Chroma vector database for full-text PDF retrieval using semantic search
 - **Fallback Flow**: Questions first match structured conditions; unmatched queries use RAG with Ollama LLM
 - **Context Expansion**: LinkRetrieverAgent automatically ingests referenced PDFs from retrieved chunks
 
 ## Key Components
 - `ask.py`: Main query interface implementing the dual DB fallback
-- `argument_db.json`: Structured antenatal condition data with recommendations/tests/ultrasound/reasons
+- `argument_db4.json`: Structured antenatal condition data with recommendations/tests/ultrasound/reasons
 - `create_vector_db.py`: Script to populate Chroma vector store from PDF chunks
 - `populate_argument_db.py`: Heuristic parsing of extracted text into structured JSON format
 - `hakathon_2026_chroma_store/`: Chroma vector store with PDF chunks
@@ -20,7 +20,7 @@ This is a Retrieval-Augmented Generation (RAG) system for antenatal care guidanc
 - `Initialize.py`: Centralized path configuration for all files and databases
 
 ## Integration Instructions
-- `pipelone_agent.py`: Use this to integrate wth your system
+- `pipelone_agent_sqlite.py`, `pipelone_agent_json.py`: Use this to integrate wth your system.
 - `example.py`: Example usage of the query interface with a sample patient case
 
 ## Development Workflow
@@ -32,6 +32,7 @@ This is a Retrieval-Augmented Generation (RAG) system for antenatal care guidanc
    - Create vector DB: `python create_vector_db.py`
    - Ingest PDF into structured DB: `python injest_pdf.py`
 3. **Query**: `python ask.py` for interactive Q&A
+            : `python example.py` for testing pipeline_integrations
 
 ## Code Patterns
 - **Path Management**: Use `Initialize.py` for all file paths (PDF, DBs, outputs)

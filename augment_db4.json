@@ -1,0 +1,595 @@
+{
+  "metadata": {
+    "source_document": "ANTENATAL CARE SCHEDULE CHEAT SHEET.pdf",
+    "extraction_policy": "STRICT: Only explicit PDF content, no inference",
+    "version": "4.1",
+    "created_at": "2025-01-21",
+    "total_conditions": 36,
+    "changes": "Added guideline_reference field to each argument based on PDF references"
+  },
+  "arguments": [
+    {
+      "condition_id": "AMA-01",
+      "condition_name": "Advanced maternal age-> 40",
+      "criteria": "Age > 40 years",
+      "source_page": 2,
+      "source_section": "Advanced maternal age-> 40",
+      "source_reference_file": "ANTENATAL CARE SCHEDULE.pdf",
+      "arguments": [
+        {"arg_id": "AMA-01-A1", "claim": "12 weeks: Aspirin risk assessment (add assessment)", "timing": "12 weeks", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "ANTENATAL CARE SCHEDULE.pdf"},
+        {"arg_id": "AMA-01-A2", "claim": "16 weeks: Obstetrician ANC", "timing": "16 weeks", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "ANTENATAL CARE SCHEDULE.pdf"},
+        {"arg_id": "AMA-01-A3", "claim": "32 & 36 weeks: Obstetrician ANC", "timing": "32, 36 weeks", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "ANTENATAL CARE SCHEDULE.pdf"},
+        {"arg_id": "AMA-01-A4", "claim": "IOL – To offer from 39 weeks", "timing": "From 39 weeks", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "ANTENATAL CARE SCHEDULE.pdf"},
+        {"arg_id": "AMA-01-A5", "claim": "28 weeks: one off SFH", "timing": "28 weeks", "category": "test", "source_column": "Examinations and tests", "guideline_reference": "ANTENATAL CARE SCHEDULE.pdf"},
+        {"arg_id": "AMA-01-A6", "claim": "4-weekly from 32 weeks till birth", "timing": "From 32 weeks", "category": "ultrasound", "source_column": "Ultrasound scan", "guideline_reference": "ANTENATAL CARE SCHEDULE.pdf"}
+      ]
+    },
+    {
+      "condition_id": "ANA-01",
+      "condition_name": "Anaemia",
+      "criteria": "1st trimester < 110g/l, 2nd and 3rd trimester < 105 g/l",
+      "source_page": 2,
+      "source_section": "Anaemia",
+      "source_reference_file": "202511211517060.Anaemia and Ferinject Infusion in Pregnancy v3.1.pdf",
+      "arguments": [
+        {"arg_id": "ANA-01-A1", "claim": "If anaemia start oral iron (unless known haemoglobinopathy then measure serum ferritin and start iron only if <30ug/l)", "timing": "Upon diagnosis", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "202511211517060.Anaemia and Ferinject Infusion in Pregnancy v3.1.pdf"},
+        {"arg_id": "ANA-01-A2", "claim": "Ferinject if not tolerating orally", "timing": "If oral iron not tolerated", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "202511211517060.Anaemia and Ferinject Infusion in Pregnancy v3.1.pdf"},
+        {"arg_id": "ANA-01-A3", "claim": "ANC referral if Hb < 70g/l or if symptomatic", "timing": "If Hb < 70g/l or symptomatic", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "202511211517060.Anaemia and Ferinject Infusion in Pregnancy v3.1.pdf"},
+        {"arg_id": "ANA-01-A4", "claim": "Booking, 28- and 34-weeks bloods (Serum ferritin and hematinics if indicated. Check Haemoglobinopathies from booking)", "timing": "Booking, 28, 34 weeks", "category": "test", "source_column": "Examinations and tests", "guideline_reference": "202511211517060.Anaemia and Ferinject Infusion in Pregnancy v3.1.pdf"},
+        {"arg_id": "ANA-01-A5", "claim": "Scans if Hb < 80g/l (and every 4 weeks till birth)", "timing": "If Hb < 80g/l", "category": "ultrasound", "source_column": "Ultrasound scan", "guideline_reference": "202511211517060.Anaemia and Ferinject Infusion in Pregnancy v3.1.pdf"}
+      ]
+    },
+    {
+      "condition_id": "BMI-01",
+      "condition_name": "BMI 35-39.9",
+      "criteria": "Raised Body Mass Index (BMI) 35-39.9",
+      "source_page": 2,
+      "source_section": "BMI 35-39.9",
+      "source_reference_file": "ANTENATAL CARE SCHEDULE.pdf",
+      "arguments": [
+        {"arg_id": "BMI-01-A1", "claim": "Preconception Folic acid 5 mg", "timing": "Preconception", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "Raised Body Mass Index (BMI) in pregnancy guideline"},
+        {"arg_id": "BMI-01-A2", "claim": "At booking - VTE and FGR risk assessment. Offer Vitamin D 25mg or 1000IU", "timing": "At booking", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "Raised Body Mass Index (BMI) in pregnancy guideline"},
+        {"arg_id": "BMI-01-A3", "claim": "16 weeks – Obstetrician ANC counselling +/- referral to dietician (IP referral on Cerner)", "timing": "16 weeks", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "Raised Body Mass Index (BMI) in pregnancy guideline"},
+        {"arg_id": "BMI-01-A4", "claim": "28 weeks +/- LMWH", "timing": "28 weeks", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "Raised Body Mass Index (BMI) in pregnancy guideline"},
+        {"arg_id": "BMI-01-A5", "claim": "32 and 36 weeks – Obstetrician ANC", "timing": "32, 36 weeks", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "Raised Body Mass Index (BMI) in pregnancy guideline"},
+        {"arg_id": "BMI-01-A6", "claim": "Discuss Postpartum prophylaxis", "timing": "Third trimester", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "Raised Body Mass Index (BMI) in pregnancy guideline"},
+        {"arg_id": "BMI-01-A7", "claim": "24-28 weeks: OGTT", "timing": "24-28 weeks", "category": "test", "source_column": "Examinations and tests", "guideline_reference": "Raised Body Mass Index (BMI) in pregnancy guideline"},
+        {"arg_id": "BMI-01-A8", "claim": "4-weekly from 32 weeks till birth", "timing": "From 32 weeks", "category": "ultrasound", "source_column": "Ultrasound scan", "guideline_reference": "Raised Body Mass Index (BMI) in pregnancy guideline"}
+      ]
+    },
+    {
+      "condition_id": "BMI-02",
+      "condition_name": "BMI > 40",
+      "criteria": "Raised Body Mass Index (BMI) > 40",
+      "source_page": 2,
+      "source_section": "BMI > 40",
+      "source_reference_file": "ANTENATAL CARE SCHEDULE.pdf",
+      "arguments": [
+        {"arg_id": "BMI-02-A1", "claim": "As per BMI 35-39.9", "timing": "Throughout pregnancy", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "Raised Body Mass Index (BMI) in pregnancy guideline"},
+        {"arg_id": "BMI-02-A2", "claim": "At booking – assess if equipment can adjust to patient or referral required", "timing": "At booking", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "Raised Body Mass Index (BMI) in pregnancy guideline"},
+        {"arg_id": "BMI-02-A3", "claim": "32 weeks for anaesthetic counselling", "timing": "32 weeks", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "Raised Body Mass Index (BMI) in pregnancy guideline"},
+        {"arg_id": "BMI-02-A4", "claim": "Appropriate cuff size", "timing": "All BP measurements", "category": "test", "source_column": "Examinations and tests", "guideline_reference": "Raised Body Mass Index (BMI) in pregnancy guideline"},
+        {"arg_id": "BMI-02-A5", "claim": "24-28 weeks - OGTT", "timing": "24-28 weeks", "category": "test", "source_column": "Examinations and tests", "guideline_reference": "Raised Body Mass Index (BMI) in pregnancy guideline"},
+        {"arg_id": "BMI-02-A6", "claim": "4-weekly from 32 weeks till birth", "timing": "From 32 weeks", "category": "ultrasound", "source_column": "Ultrasound scan", "guideline_reference": "Raised Body Mass Index (BMI) in pregnancy guideline"}
+      ]
+    },
+    {
+      "condition_id": "INF-01",
+      "condition_name": "Chicken pox",
+      "criteria": "Patient develops chicken pox during pregnancy",
+      "source_page": 2,
+      "source_section": "Chicken pox",
+      "source_reference_file": "202204111056350.Chicken pox in pregnancy.pdf",
+      "arguments": [
+        {"arg_id": "INF-01-A1", "claim": "If patient develops chicken pox ask her not to attend ANC until all lesions have crusted over", "timing": "Upon diagnosis", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "202204111056350.Chicken pox in pregnancy.pdf"},
+        {"arg_id": "INF-01-A2", "claim": "Confirm immunity and acute infection and treat according to guidelines", "timing": "Upon presentation", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "202204111056350.Chicken pox in pregnancy.pdf"},
+        {"arg_id": "INF-01-A3", "claim": "Obstetric ANC after FMU scan", "timing": "After FMU scan", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "202204111056350.Chicken pox in pregnancy.pdf"},
+        {"arg_id": "INF-01-A4", "claim": "Bloods post exposure Ig VZV", "timing": "Post exposure", "category": "test", "source_column": "Examinations and tests", "guideline_reference": "202204111056350.Chicken pox in pregnancy.pdf"},
+        {"arg_id": "INF-01-A5", "claim": "FMU scan 5 weeks after onset of rash, signs of: Fetal growth restriction, Limb hypoplasia, Ventriculomegaly or microcephaly, Skin or ocular lesions", "timing": "5 weeks after rash onset", "category": "ultrasound", "source_column": "Ultrasound scan", "guideline_reference": "202204111056350.Chicken pox in pregnancy.pdf"}
+      ]
+    },
+    {
+      "condition_id": "HTN-01",
+      "condition_name": "Chronic Hypertension",
+      "criteria": "HTN present at booking or before 20 weeks gestation",
+      "source_page": 3,
+      "source_section": "Chronic Hypertension",
+      "source_reference_file": "202601301510290.Antenatal Hypertension Pregnancy V5.1.pdf",
+      "arguments": [
+        {"arg_id": "HTN-01-A1", "claim": "Booking – change antihypertensives to labetalol/nifedipine/methyldopa", "timing": "At booking", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "202601301510290.Antenatal Hypertension Pregnancy V5.1.pdf"},
+        {"arg_id": "HTN-01-A2", "claim": "12 weeks - Aspirin 150 mg", "timing": "12 weeks", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "202601301510290.Antenatal Hypertension Pregnancy V5.1.pdf"},
+        {"arg_id": "HTN-01-A3", "claim": "16 weeks – Obstetric ANC", "timing": "16 weeks", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "202601301510290.Antenatal Hypertension Pregnancy V5.1.pdf"},
+        {"arg_id": "HTN-01-A4", "claim": "DIGITAL BP should be used at all times", "timing": "All visits", "category": "test", "source_column": "Examinations and tests", "guideline_reference": "202601301510290.Antenatal Hypertension Pregnancy V5.1.pdf"},
+        {"arg_id": "HTN-01-A5", "claim": "Booking bloods including FBC and U&E – repeat 28 and 34 weeks", "timing": "Booking, 28, 34 weeks", "category": "test", "source_column": "Examinations and tests", "guideline_reference": "202601301510290.Antenatal Hypertension Pregnancy V5.1.pdf"},
+        {"arg_id": "HTN-01-A6", "claim": "OGTT 24-28 weeks", "timing": "24-28 weeks", "category": "test", "source_column": "Examinations and tests", "guideline_reference": "202601301510290.Antenatal Hypertension Pregnancy V5.1.pdf"},
+        {"arg_id": "HTN-01-A7", "claim": "BP and urine each visit and should be within 2-4 weeks intervals", "timing": "Each visit", "category": "test", "source_column": "Examinations and tests", "guideline_reference": "202601301510290.Antenatal Hypertension Pregnancy V5.1.pdf"},
+        {"arg_id": "HTN-01-A8", "claim": "Anomaly + uterine artery doppler - Normal UA PI + EFW > 10th – serial scan from 32 weeks - Abnormal UA PI + EFW > 10th – serial scan from 28 (every 2-4 weeks) - EFW < 10th at anomaly scan - FMU referral", "timing": "20 weeks + as indicated", "category": "ultrasound", "source_column": "Ultrasound scan", "guideline_reference": "202601301510290.Antenatal Hypertension Pregnancy V5.1.pdf"}
+      ]
+    },
+    {
+      "condition_id": "UTA-01",
+      "condition_name": "Congenital uterine anomaly",
+      "criteria": "Structural uterine anomaly identified",
+      "source_page": 3,
+      "source_section": "Congenital uterine anomaly",
+      "source_reference_file": "ANTENATAL CARE SCHEDULE.pdf",
+      "arguments": [
+        {"arg_id": "UTA-01-A1", "claim": "ANC review for scans", "timing": "Throughout pregnancy", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "ANTENATAL CARE SCHEDULE.pdf"},
+        {"arg_id": "UTA-01-A2", "claim": "Referral to PTB clinic", "timing": "At diagnosis", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "ANTENATAL CARE SCHEDULE.pdf"},
+        {"arg_id": "UTA-01-A3", "claim": "Cervical length scans", "timing": "As per protocol", "category": "ultrasound", "source_column": "Ultrasound scan", "guideline_reference": "ANTENATAL CARE SCHEDULE.pdf"},
+        {"arg_id": "UTA-01-A4", "claim": "Renal scan", "timing": "At diagnosis", "category": "ultrasound", "source_column": "Ultrasound scan", "guideline_reference": "ANTENATAL CARE SCHEDULE.pdf"},
+        {"arg_id": "UTA-01-A5", "claim": "Growth from 28 weeks 4 weekly till birth", "timing": "From 28 weeks", "category": "ultrasound", "source_column": "Ultrasound scan", "guideline_reference": "ANTENATAL CARE SCHEDULE.pdf"}
+      ]
+    },
+    {
+      "condition_id": "EPI-01",
+      "condition_name": "Epilepsy",
+      "criteria": "Women on Anti-Epileptic Drugs (AED)",
+      "source_page": 3,
+      "source_section": "Epilepsy",
+      "source_reference_file": "202405211452040.Epilepsy in pregnancy V7.pdf",
+      "arguments": [
+        {"arg_id": "EPI-01-A1", "claim": "Preconception: 5 mg folic acid", "timing": "Preconception", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "202405211452040.Epilepsy in pregnancy V7.pdf"},
+        {"arg_id": "EPI-01-A2", "claim": "Booking – Refer to Obs Med team", "timing": "At booking", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "202405211452040.Epilepsy in pregnancy V7.pdf"},
+        {"arg_id": "EPI-01-A3", "claim": "16 weeks - Obs ANC – r/v seizure control and SUDEP risk factors", "timing": "16 weeks", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "202405211452040.Epilepsy in pregnancy V7.pdf"},
+        {"arg_id": "EPI-01-A4", "claim": "28 weeks – Obs +/- Neuro", "timing": "28 weeks", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "202405211452040.Epilepsy in pregnancy V7.pdf"},
+        {"arg_id": "EPI-01-A5", "claim": "32 weeks – Obs ANC – Vit K discussion", "timing": "32 weeks", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "202405211452040.Epilepsy in pregnancy V7.pdf"},
+        {"arg_id": "EPI-01-A6", "claim": "36 weeks – Obs ANC and discuss labour and postnatal contraception", "timing": "36 weeks", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "202405211452040.Epilepsy in pregnancy V7.pdf"},
+        {"arg_id": "EPI-01-A7", "claim": "No drug levels needed except if frequency of seizures increase or changing doses", "timing": "As needed", "category": "test", "source_column": "Examinations and tests", "guideline_reference": "202405211452040.Epilepsy in pregnancy V7.pdf"},
+        {"arg_id": "EPI-01-A8", "claim": "All women on AED only: 20 weeks: detailed anomaly + ECHO And 4-weekly growth scans from 28 weeks (sonographer led FMU)", "timing": "20 weeks + from 28 weeks", "category": "ultrasound", "source_column": "Ultrasound scan", "guideline_reference": "202405211452040.Epilepsy in pregnancy V7.pdf"}
+      ]
+    },
+    {
+      "condition_id": "RFM-01",
+      "condition_name": "Reduced Fetal Movements",
+      "criteria": "Patient reports reduced fetal movements",
+      "source_page": 3,
+      "source_section": "Fetal movements / REDUCED FETAL MOVEMENTS",
+      "source_reference_file": "ANTENATAL CARE SCHEDULE.pdf",
+      "arguments": [
+        {"arg_id": "RFM-01-A1", "claim": "< 24 weeks gestation: FHR sonic aid, No CTG or ultrasound routinely indicated, If never felt FM – consider FMU referral", "timing": "< 24 weeks", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "ANTENATAL CARE SCHEDULE.pdf"},
+        {"arg_id": "RFM-01-A2", "claim": "24+0 to 27+6 weeks gestation: FHR- sonic aid. If fetal heart present and no risk factors: Reassure and provide advice on monitoring movements. Persistent RFM- if risk factors for fetal growth restriction or stillbirth- consider scan at first presentation", "timing": "24+0 to 27+6 weeks", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "ANTENATAL CARE SCHEDULE.pdf"},
+        {"arg_id": "RFM-01-A3", "claim": ">28 weeks Without risk factors: SFH and CTG. If normal reassure. Risk factors for stillbirth/FGR or more than one episode. SFH, CTG and ultrasound (if performed within 2 weeks, to consider liquor and doppler). If cCTG abnormal- senior review", "timing": ">28 weeks", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "ANTENATAL CARE SCHEDULE.pdf"},
+        {"arg_id": "RFM-01-A4", "claim": "Never felt movements by 24 weeks: FMU referral. Persistent reduced fetal movements or RFM and a high risk of stillbirth/FGR. Growth scan within 24 hours unless a previous scan was done within 2 weeks. In this case, liquor and doppler measurements can be considered.", "timing": "As indicated", "category": "ultrasound", "source_column": "Ultrasound scan", "guideline_reference": "ANTENATAL CARE SCHEDULE.pdf"}
+      ]
+    },
+    {
+      "condition_id": "FGR-01",
+      "condition_name": "FGR baby: EFW/AC<3rd centile or abnormal doppler",
+      "criteria": "EFW/AC < 3rd centile or abnormal doppler",
+      "source_page": 4,
+      "source_section": "FGR baby",
+      "source_reference_file": "202411210723400.FGR Guideline 2024 Hillingdon 2024.pdf",
+      "arguments": [
+        {"arg_id": "FGR-01-A1", "claim": "Booking: assess risk factors for FGR (RCOG risk stratification) +/- Aspirin 150 mg", "timing": "At booking", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "202411210723400.FGR Guideline 2024 Hillingdon 2024.pdf"},
+        {"arg_id": "FGR-01-A2", "claim": "IOL at 37/40 if no other concerns", "timing": "37/40 weeks", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "202411210723400.FGR Guideline 2024 Hillingdon 2024.pdf"},
+        {"arg_id": "FGR-01-A3", "claim": "Individualised care", "timing": "Throughout pregnancy", "category": "recommendation", "source_column": "Examinations and tests", "guideline_reference": "202411210723400.FGR Guideline 2024 Hillingdon 2024.pdf"},
+        {"arg_id": "FGR-01-A4", "claim": "Follow pathway +/- uterine artery dopplers", "timing": "As per guideline", "category": "ultrasound", "source_column": "Ultrasound scan", "guideline_reference": "202411210723400.FGR Guideline 2024 Hillingdon 2024.pdf"}
+      ]
+    },
+    {
+      "condition_id": "FIB-01",
+      "condition_name": "Fibroid uterus",
+      "criteria": "At least one fibroid > 3cm",
+      "source_page": 4,
+      "source_section": "Fibroid uterus",
+      "source_reference_file": "ANTENATAL CARE SCHEDULE.pdf",
+      "arguments": [
+        {"arg_id": "FIB-01-A1", "claim": "Refer to Obstetric ANC when fibroids detected", "timing": "At diagnosis", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "ANTENATAL CARE SCHEDULE.pdf"},
+        {"arg_id": "FIB-01-A2", "claim": "32 weeks – Obs ANC + scan", "timing": "32 weeks", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "ANTENATAL CARE SCHEDULE.pdf"},
+        {"arg_id": "FIB-01-A3", "claim": "36 weeks – Obs ANC + scan", "timing": "36 weeks", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "ANTENATAL CARE SCHEDULE.pdf"},
+        {"arg_id": "FIB-01-A4", "claim": "Discuss fibroids and risks. Plan birth according to individual care", "timing": "Third trimester", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "ANTENATAL CARE SCHEDULE.pdf"},
+        {"arg_id": "FIB-01-A5", "claim": "Optimize Hb. Will need x-match in labour", "timing": "Throughout pregnancy / at labour", "category": "test", "source_column": "Examinations and tests", "guideline_reference": "ANTENATAL CARE SCHEDULE.pdf"},
+        {"arg_id": "FIB-01-A6", "claim": "32 & 36 weeks", "timing": "32, 36 weeks", "category": "ultrasound", "source_column": "Ultrasound scan", "guideline_reference": "ANTENATAL CARE SCHEDULE.pdf"}
+      ]
+    },
+    {
+      "condition_id": "GDM-01",
+      "condition_name": "Gestational diabetes",
+      "criteria": "First recognised in pregnancy - Fbs > 5.6 and 2hr > 7.8 mmol/l",
+      "source_page": 4,
+      "source_section": "Gestational diabetes",
+      "source_reference_file": "202512191131340.gestational diabetes guideline v4.1.pdf",
+      "arguments": [
+        {"arg_id": "GDM-01-A1", "claim": "At Booking OGTT if previous gestational diabetes as soon as possible and at 24-28 weeks if normal", "timing": "Booking / 24-28 weeks", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "202512191131340.gestational diabetes guideline v4.1.pdf"},
+        {"arg_id": "GDM-01-A2", "claim": "GDM on diet: remote review 2-3 weekly until delivery", "timing": "After initial HGM", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "202512191131340.gestational diabetes guideline v4.1.pdf"},
+        {"arg_id": "GDM-01-A3", "claim": "31-33 weeks birth DSM preparation class", "timing": "31-33 weeks", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "202512191131340.gestational diabetes guideline v4.1.pdf"},
+        {"arg_id": "GDM-01-A4", "claim": "36 weeks Dr MOB and IOL discussion", "timing": "36 weeks", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "202512191131340.gestational diabetes guideline v4.1.pdf"},
+        {"arg_id": "GDM-01-A5", "claim": "IOL 40+0 – 40+6 (diet)", "timing": "40+0 to 40+6 weeks", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "202512191131340.gestational diabetes guideline v4.1.pdf"},
+        {"arg_id": "GDM-01-A6", "claim": "GDM on treatment: 1-2 weekly remote r/v DSM", "timing": "After treatment initiation", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "202512191131340.gestational diabetes guideline v4.1.pdf"},
+        {"arg_id": "GDM-01-A7", "claim": "IOL at 39-40+0 (treatment)", "timing": "39-40+0 weeks", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "202512191131340.gestational diabetes guideline v4.1.pdf"},
+        {"arg_id": "GDM-01-A8", "claim": "Hb1AC if diagnosis in 1st or 2nd trimester if RBS 7 or more (THH specific). OGTT (if risk factors) – at any gestation if abnormal RBS, glucosuria", "timing": "At diagnosis", "category": "test", "source_column": "Examinations and tests", "guideline_reference": "202512191131340.gestational diabetes guideline v4.1.pdf"},
+        {"arg_id": "GDM-01-A9", "claim": "If GDM diagnosed in first trimester: 4-weekly from 28 weeks till birth. GDM on diet: 4-weekly from 36 weeks till birth. GDM on treatment: 4-weekly from 28 weeks till birth", "timing": "From 28/36 weeks", "category": "ultrasound", "source_column": "Ultrasound scan", "guideline_reference": "202512191131340.gestational diabetes guideline v4.1.pdf"}
+      ]
+    },
+    {
+      "condition_id": "HER-01",
+      "condition_name": "Herpes",
+      "criteria": "History of genital herpes or active genital warts",
+      "source_page": 5,
+      "source_section": "Herpes",
+      "source_reference_file": "202411110820540.Genital warts in pregnancy V5.0.pdf",
+      "arguments": [
+        {"arg_id": "HER-01-A1", "claim": "Booking previous Herpes infection with history of recurrence refer to Obs ANC", "timing": "At booking", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "202411110820540.Genital warts in pregnancy V5.0.pdf"},
+        {"arg_id": "HER-01-A2", "claim": "If present with genital warts refer to specialist midwife for sexual health", "timing": "At presentation", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "202411110820540.Genital warts in pregnancy V5.0.pdf"},
+        {"arg_id": "HER-01-A3", "claim": "Primary infection 1st/2nd Trimester: give Aciclovir po 400 mg TDS for 5d, restart at 32 weeks for suppressive --> vaginal delivery + paeds referral", "timing": "1st/2nd trimester + 32 weeks", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "202411110820540.Genital warts in pregnancy V5.0.pdf"},
+        {"arg_id": "HER-01-A4", "claim": "3rd trimester/ or at least 6 weeks prior to delivery: treatment until delivery, indication: CS, paeds to attend delivery", "timing": "3rd trimester", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "202411110820540.Genital warts in pregnancy V5.0.pdf"},
+        {"arg_id": "HER-01-A5", "claim": "Recurrent Herpes (pre-pregnancy): Treat if active, suppression from 32 weeks, mode of birth: Vaginal unless otherwise indicated", "timing": "From 32 weeks", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "202411110820540.Genital warts in pregnancy V5.0.pdf"},
+        {"arg_id": "HER-01-A6", "claim": "No additional growth scans unless other indication", "timing": "As indicated", "category": "ultrasound", "source_column": "Ultrasound scan", "guideline_reference": "202411110820540.Genital warts in pregnancy V5.0.pdf"}
+      ]
+    },
+    {
+      "condition_id": "THR-01",
+      "condition_name": "Hyperthyroid",
+      "criteria": "TSH < 0.1 mIU/l or undetectable and raised T4 or T3",
+      "source_page": 5,
+      "source_section": "Hyperthyroid",
+      "source_reference_file": "202504141031280.Thyroid guideline V3.0.pdf",
+      "arguments": [
+        {"arg_id": "THR-01-A1", "claim": "Booking refer to endocrinology", "timing": "At booking", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "202504141031280.Thyroid guideline V3.0.pdf"},
+        {"arg_id": "THR-01-A2", "claim": "TFTS at booking. TFTs every 2-4 weeks till 20 weeks. >20 weeks every 4-8 weeks. Every 2 weeks if dose change", "timing": "Throughout pregnancy", "category": "test", "source_column": "Examinations and tests", "guideline_reference": "202504141031280.Thyroid guideline V3.0.pdf"},
+        {"arg_id": "THR-01-A3", "claim": "TRAb in first trimester: if positive or on antithyroid medication – repeat at 20 and 28 weeks", "timing": "1st, 20, 28 weeks", "category": "test", "source_column": "Examinations and tests", "guideline_reference": "202504141031280.Thyroid guideline V3.0.pdf"},
+        {"arg_id": "THR-01-A4", "claim": "FBC on same day if sore throat, fever or rash to exclude agranulocytosis", "timing": "If symptomatic", "category": "test", "source_column": "Examinations and tests", "guideline_reference": "202504141031280.Thyroid guideline V3.0.pdf"},
+        {"arg_id": "THR-01-A5", "claim": "4-weekly growth scans (including UAD) from 28 weeks for those requiring antithyroid treatment, uncontrolled Graves' disease in pregnancy or has TRAb 3X the threshold of positivity – these should be on FMU list and checked for tachycardia, goitre, FGR and hydrops", "timing": "From 28 weeks", "category": "ultrasound", "source_column": "Ultrasound scan", "guideline_reference": "202504141031280.Thyroid guideline V3.0.pdf"}
+      ]
+    },
+    {
+      "condition_id": "THR-02",
+      "condition_name": "Hypothyroid",
+      "criteria": "Raised TSH and low free T4 or TSH > 10 mIU/l or TSH > 2.5-10 but normal T4",
+      "source_page": 6,
+      "source_section": "Hypothyroid",
+      "source_reference_file": "202504141031280.Thyroid guideline V3.0.pdf",
+      "arguments": [
+        {"arg_id": "THR-02-A1", "claim": "Booking: TFT. 16 weeks: Obs ANC. 28 weeks: Obs ANC. 36 weeks: Obs ANC. If abnormal TFT adjust medication and repeat 2-4 weeks. For treatment: see guidelines", "timing": "Booking, 16, 28, 36 weeks", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "202504141031280.Thyroid guideline V3.0.pdf"},
+        {"arg_id": "THR-02-A2", "claim": "Booking: Baseline TFT. 16 weeks: TFT. 20 weeks: TFT. 28 weeks: TFT. TFTs 4 weeks after changing thyroxine dose. No need to check TPO antibodies. If known TPO positive, and not on medication TFTs at booking and at 20 weeks. If normal no treatment or further tests.", "timing": "Booking, 16, 20, 28 weeks", "category": "test", "source_column": "Examinations and tests", "guideline_reference": "202504141031280.Thyroid guideline V3.0.pdf"},
+        {"arg_id": "THR-02-A3", "claim": "No further Ultrasounds needed", "timing": "N/A", "category": "ultrasound", "source_column": "Ultrasound scan", "guideline_reference": "202504141031280.Thyroid guideline V3.0.pdf"}
+      ]
+    },
+    {
+      "condition_id": "IBD-01",
+      "condition_name": "Inflammatory Bowel Disease",
+      "criteria": "Diagnosed IBD (Crohn's or Ulcerative Colitis)",
+      "source_page": 6,
+      "source_section": "Inflammatory Bowel Disease",
+      "source_reference_file": "ANTENATAL CARE SCHEDULE.pdf",
+      "arguments": [
+        {"arg_id": "IBD-01-A1", "claim": "Refer to Obs Med team at booking", "timing": "At booking", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "ANTENATAL CARE SCHEDULE.pdf"},
+        {"arg_id": "IBD-01-A2", "claim": "Signpost to the IBD and pregnancy website", "timing": "At diagnosis", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "ANTENATAL CARE SCHEDULE.pdf"},
+        {"arg_id": "IBD-01-A3", "claim": "Joint care with Gastro team – medication review", "timing": "Throughout pregnancy", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "ANTENATAL CARE SCHEDULE.pdf"},
+        {"arg_id": "IBD-01-A4", "claim": "Preconception - Folic acid 5 mg until 12 weeks", "timing": "Preconception / early pregnancy", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "ANTENATAL CARE SCHEDULE.pdf"},
+        {"arg_id": "IBD-01-A5", "claim": "28, 32 and 36 weeks review IBD any flares / admissions", "timing": "28, 32, 36 weeks", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "ANTENATAL CARE SCHEDULE.pdf"},
+        {"arg_id": "IBD-01-A6", "claim": "Booking bloods, urine, BP, BMI, FGR/PET risk, VTE assessment", "timing": "At booking", "category": "test", "source_column": "Examinations and tests", "guideline_reference": "ANTENATAL CARE SCHEDULE.pdf"},
+        {"arg_id": "IBD-01-A7", "claim": "Growth scan if on steroids or acute flare up in pregnancy - 4 weekly from 32 weeks till birth (otherwise, no scans are needed unless other risk factors)", "timing": "From 32 weeks", "category": "ultrasound", "source_column": "Ultrasound scan", "guideline_reference": "ANTENATAL CARE SCHEDULE.pdf"}
+      ]
+    },
+    {
+      "condition_id": "IVF-01",
+      "condition_name": "IVF pregnancy",
+      "criteria": "Pregnancy conceived via IVF",
+      "source_page": 6,
+      "source_section": "IVF pregnancy",
+      "source_reference_file": "ANTENATAL CARE SCHEDULE.pdf",
+      "arguments": [
+        {"arg_id": "IVF-01-A1", "claim": "16 weeks Obstetric ANC", "timing": "16 weeks", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "ANTENATAL CARE SCHEDULE.pdf"},
+        {"arg_id": "IVF-01-A2", "claim": "To consider IOL from 39 weeks (currently no impact paper or guidance)", "timing": "From 39 weeks", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "ANTENATAL CARE SCHEDULE.pdf"},
+        {"arg_id": "IVF-01-A3", "claim": "IVF alone is not an indication for scans", "timing": "N/A", "category": "ultrasound", "source_column": "Ultrasound scan", "guideline_reference": "ANTENATAL CARE SCHEDULE.pdf"}
+      ]
+    },
+    {
+      "condition_id": "LGA-01",
+      "condition_name": "Large baby - LGA",
+      "criteria": "AC or EFW > 95th centile OR SFH > 97th centile on Intergrowth chart",
+      "source_page": 6,
+      "source_section": "Large baby",
+      "source_reference_file": "ANTENATAL CARE SCHEDULE.pdf",
+      "arguments": [
+        {"arg_id": "LGA-01-A1", "claim": "Routine clinic appointments", "timing": "As per schedule", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "ANTENATAL CARE SCHEDULE.pdf"},
+        {"arg_id": "LGA-01-A2", "claim": "32 weeks: book scan for 36-38 weeks", "timing": "32 weeks", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "ANTENATAL CARE SCHEDULE.pdf"},
+        {"arg_id": "LGA-01-A3", "claim": "36 weeks: Obstetric ANC counselling with scan review LGA for shoulder dystocia and birth trauma + MOD/ IOL", "timing": "36 weeks", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "ANTENATAL CARE SCHEDULE.pdf"},
+        {"arg_id": "LGA-01-A4", "claim": "If detected at 18-21 weeks scan: OGTT or HGM. If LGA detected on anomaly scan: GTT (if this is normal, consider repeating later). GTT at any stage LGA detected", "timing": "At detection", "category": "test", "source_column": "Examinations and tests", "guideline_reference": "ANTENATAL CARE SCHEDULE.pdf"},
+        {"arg_id": "LGA-01-A5", "claim": "SFH > 97th centile - For growth scan. If growth scan shows EFW/AC >= 95th centile then repeat scan at 36-38 weeks (unless > 34 weeks when only if clinically indicated). If < 95th centile routine care even if SFH remains raised.", "timing": "As indicated", "category": "ultrasound", "source_column": "Ultrasound scan", "guideline_reference": "ANTENATAL CARE SCHEDULE.pdf"}
+      ]
+    },
+    {
+      "condition_id": "BMI-03",
+      "condition_name": "Low BMI < 18.5",
+      "criteria": "BMI < 18.5",
+      "source_page": 6,
+      "source_section": "Low BMI",
+      "source_reference_file": "ANTENATAL CARE SCHEDULE.pdf",
+      "arguments": [
+        {"arg_id": "BMI-03-A1", "claim": "Booking: assess risk factors for FGR", "timing": "At booking", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "ANTENATAL CARE SCHEDULE.pdf"},
+        {"arg_id": "BMI-03-A2", "claim": "Dietary advice and offer dietician referral (CERNER order)", "timing": "At booking", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "ANTENATAL CARE SCHEDULE.pdf"},
+        {"arg_id": "BMI-03-A3", "claim": "4-weekly from 32 weeks till birth", "timing": "From 32 weeks", "category": "ultrasound", "source_column": "Ultrasound scan", "guideline_reference": "ANTENATAL CARE SCHEDULE.pdf"}
+      ]
+    },
+    {
+      "condition_id": "PAPPA-01",
+      "condition_name": "Low PaPP-A (0.415 MoM)",
+      "criteria": "PAPP-A <= 0.415 MoM",
+      "source_page": 7,
+      "source_section": "Low PaPP-A",
+      "source_reference_file": "202411210723400.FGR Guideline 2024 Hillingdon 2024.pdf",
+      "arguments": [
+        {"arg_id": "PAPPA-01-A1", "claim": "16 weeks Assess booking factors for SGA", "timing": "16 weeks", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "202411210723400.FGR Guideline 2024 Hillingdon 2024.pdf"},
+        {"arg_id": "PAPPA-01-A2", "claim": "Recommend aspirin if < 20 weeks", "timing": "< 20 weeks", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "202411210723400.FGR Guideline 2024 Hillingdon 2024.pdf"},
+        {"arg_id": "PAPPA-01-A3", "claim": "Add uterine artery doppler and follow pathway", "timing": "As per guideline", "category": "ultrasound", "source_column": "Ultrasound scan", "guideline_reference": "202411210723400.FGR Guideline 2024 Hillingdon 2024.pdf"}
+      ]
+    },
+    {
+      "condition_id": "AB-01",
+      "condition_name": "Maternal antibodies",
+      "criteria": "Clinically significant red cell antibodies detected",
+      "source_page": 7,
+      "source_section": "Maternal antibodies",
+      "source_reference_file": "202502241020400.Antibodies in pregnancy V5.0.pdf",
+      "arguments": [
+        {"arg_id": "AB-01-A1", "claim": "Booking 16 weeks Obs ANC. If titres normal – routine F/U. If rising titres or critical for FMU referral: Anti-D ≥ 4 IU/ml, Anti-c ≥ 7.5 IU/ml, Any anti-K detected. Delivery depends on MCA doppler", "timing": "Booking, 16 weeks", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "202502241020400.Antibodies in pregnancy V5.0.pdf"},
+        {"arg_id": "AB-01-A2", "claim": "Booking – G&S – if Antibodies +ve. No clinically significant Ab – repeat at 28 weeks. Clinically significant Ab (anti-D, anti-K, anti-c etc): repeat antibody titre every 4 weeks until 28 weeks then 2 weekly until delivery (follow lab guidance). Weekly G&S from 28 weeks", "timing": "Booking, 28 weeks + ongoing", "category": "test", "source_column": "Examinations and tests", "guideline_reference": "202502241020400.Antibodies in pregnancy V5.0.pdf"},
+        {"arg_id": "AB-01-A3", "claim": "Routine USS as per low-risk patient unless Ab reach critical levels. Referral to FMU for MCA PSV and growth if moderate risk of HDFN (from 18 weeks)", "timing": "From 18 weeks", "category": "ultrasound", "source_column": "Ultrasound scan", "guideline_reference": "202502241020400.Antibodies in pregnancy V5.0.pdf"}
+      ]
+    },
+    {
+      "condition_id": "PLA-01",
+      "condition_name": "Placenta Praevia / low lying at 20/40",
+      "criteria": ">16 weeks: Placenta praevia (covering Cx Os) OR Low lying (<20mm from Cx Os)",
+      "source_page": 7,
+      "source_section": "Placenta Praevia",
+      "source_reference_file": "ANTENATAL CARE SCHEDULE.pdf",
+      "arguments": [
+        {"arg_id": "PLA-01-A1", "claim": "32 weeks – Obstetrician ANC – consider PAS referral if previous uterine surgery and anterior placenta", "timing": "32 weeks", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "ANTENATAL CARE SCHEDULE.pdf"},
+        {"arg_id": "PLA-01-A2", "claim": "36 weeks – Obstetrician referral ANC", "timing": "36 weeks", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "ANTENATAL CARE SCHEDULE.pdf"},
+        {"arg_id": "PLA-01-A3", "claim": "Placenta Praevia or symptomatic Low-lying placenta: Steroids at 34-35+6 weeks unless already steroid mature", "timing": "34-35+6 weeks", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "ANTENATAL CARE SCHEDULE.pdf"},
+        {"arg_id": "PLA-01-A4", "claim": "Placenta Praevia: Delivery via LSCS 36-37/40 (if asymptomatic) and 34-36+6/40 (if symptomatic placenta praevia)", "timing": "34-37/40 weeks", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "ANTENATAL CARE SCHEDULE.pdf"},
+        {"arg_id": "PLA-01-A5", "claim": "If Low lying Placenta praevia plan timing of delivery with patient (<20mm most likely needs Caesarean Birth especially if the edge is thick)", "timing": "Third trimester", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "ANTENATAL CARE SCHEDULE.pdf"},
+        {"arg_id": "PLA-01-A6", "claim": "From 32 weeks - weekly G&S until delivery (if no Ab)", "timing": "From 32 weeks", "category": "test", "source_column": "Examinations and tests", "guideline_reference": "ANTENATAL CARE SCHEDULE.pdf"},
+        {"arg_id": "PLA-01-A7", "claim": "26–28-week scan on a high-risk antenatal scanning list if: Placenta praevia (covering os) with 1 or more intermediate or 2 or more minor risk factors) OR Low lying placenta (<20mm at 20 weeks) with a 1 major/intermediate risk factor) OR Low-lying placenta (<20mm at 20 weeks) with 2 or more minor risk factors", "timing": "26-28 weeks", "category": "ultrasound", "source_column": "Ultrasound scan", "guideline_reference": "ANTENATAL CARE SCHEDULE.pdf"},
+        {"arg_id": "PLA-01-A8", "claim": "32 weeks for placental localisation. 36 weeks + placental localisation", "timing": "32, 36 weeks", "category": "ultrasound", "source_column": "Ultrasound scan", "guideline_reference": "ANTENATAL CARE SCHEDULE.pdf"}
+      ]
+    },
+    {
+      "condition_id": "POLY-01",
+      "condition_name": "Polyhydramnios",
+      "criteria": "Mild: AFI 25–29.9 cm or DVP 8–11 cm; Moderate: AFI 30–34.9 cm or DVP 12–15 cm; Severe: AFI ≥35 cm or DVP ≥16 cm",
+      "source_page": 7,
+      "source_section": "Polyhydramnios",
+      "source_reference_file": "202405211458230.Management of large for gestational age foetuses and macrosomia V2.0.pdf",
+      "arguments": [
+        {"arg_id": "POLY-01-A1", "claim": "OGTT (even if earlier screening normal)", "timing": "At diagnosis", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "202405211458230.Management of large for gestational age foetuses and macrosomia V2.0.pdf"},
+        {"arg_id": "POLY-01-A2", "claim": "Check CST", "timing": "At diagnosis", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "202405211458230.Management of large for gestational age foetuses and macrosomia V2.0.pdf"},
+        {"arg_id": "POLY-01-A3", "claim": "2-4 weekly ANC (depending on severity). Delivery is planned depending on cause and severity (no need to offer IOL for AFI<25cm. Consider IOL if AFI>25cm at 40 weeks)", "timing": "Throughout pregnancy", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "202405211458230.Management of large for gestational age foetuses and macrosomia V2.0.pdf"},
+        {"arg_id": "POLY-01-A4", "claim": "TORCH/ infection screen. Rhesus status and antibodies as per routine care. Consider karyotyping/ FMU referral if: Structural anomalies, Early-onset or severe polyhydramnios", "timing": "At diagnosis", "category": "test", "source_column": "Examinations and tests", "guideline_reference": "202405211458230.Management of large for gestational age foetuses and macrosomia V2.0.pdf"},
+        {"arg_id": "POLY-01-A5", "claim": "Confirm anomaly scan (no structural abnormalities) and CST", "timing": "At diagnosis", "category": "ultrasound", "source_column": "Ultrasound scan", "guideline_reference": "202405211458230.Management of large for gestational age foetuses and macrosomia V2.0.pdf"},
+        {"arg_id": "POLY-01-A6", "claim": "Refer to FMU if polyhydramnios >25cm at anomaly scan. Refer to FMU if AFI>25cm and EFW/AC less than the 5th centile. Refer to FMU at any gestation if AFI>35cm", "timing": "As indicated", "category": "ultrasound", "source_column": "Ultrasound scan", "guideline_reference": "202405211458230.Management of large for gestational age foetuses and macrosomia V2.0.pdf"},
+        {"arg_id": "POLY-01-A7", "claim": "2–4 weekly scans, increasing to a weekly scan if severe or symptomatic", "timing": "Throughout pregnancy", "category": "ultrasound", "source_column": "Ultrasound scan", "guideline_reference": "202405211458230.Management of large for gestational age foetuses and macrosomia V2.0.pdf"}
+      ]
+    },
+    {
+      "condition_id": "CS-01",
+      "condition_name": "Previous Caesarean Section",
+      "criteria": "History of prior Caesarean delivery",
+      "source_page": 8,
+      "source_section": "Previous Caesarean Section",
+      "source_reference_file": "202506241450060.Vaginal birth after csection VBAC V7.0.pdf",
+      "arguments": [
+        {"arg_id": "CS-01-A1", "claim": "Routine care", "timing": "Throughout pregnancy", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "202506241450060.Vaginal birth after csection VBAC V7.0.pdf"},
+        {"arg_id": "CS-01-A2", "claim": "RCOG leaflet for VBAC vs CS at booking or 16 weeks if indicated", "timing": "Booking / 16 weeks", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "202506241450060.Vaginal birth after csection VBAC V7.0.pdf"},
+        {"arg_id": "CS-01-A3", "claim": "Birth options clinic with Senior MW at 16 weeks if one uncomplicated Caesarean OR 16-week ANC with obstetrician if 2 or more uterine surgeries or complex Caesarean", "timing": "16 weeks", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "202506241450060.Vaginal birth after csection VBAC V7.0.pdf"},
+        {"arg_id": "CS-01-A4", "claim": "36 weeks Obstetrician ANC Mode of Birth", "timing": "36 weeks", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "202506241450060.Vaginal birth after csection VBAC V7.0.pdf"},
+        {"arg_id": "CS-01-A5", "claim": "No indication until other causes", "timing": "N/A", "category": "test", "source_column": "Examinations and tests", "guideline_reference": "202506241450060.Vaginal birth after csection VBAC V7.0.pdf"},
+        {"arg_id": "CS-01-A6", "claim": "No indication until other causes", "timing": "N/A", "category": "ultrasound", "source_column": "Ultrasound scan", "guideline_reference": "202506241450060.Vaginal birth after csection VBAC V7.0.pdf"}
+      ]
+    },
+    {
+      "condition_id": "CONG-01",
+      "condition_name": "Previous congenital abnormality",
+      "criteria": "Previous pregnancy with congenital anomaly",
+      "source_page": 8,
+      "source_section": "Previous congenital abnormality",
+      "source_reference_file": "ANTENATAL CARE SCHEDULE.pdf",
+      "arguments": [
+        {"arg_id": "CONG-01-A1", "claim": "Depends on previous abnormality: Examples: Spina bifida 5mg folic acid, Heart abnormality ECHO", "timing": "As indicated", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "ANTENATAL CARE SCHEDULE.pdf"},
+        {"arg_id": "CONG-01-A2", "claim": "FMU referral", "timing": "As indicated", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "ANTENATAL CARE SCHEDULE.pdf"},
+        {"arg_id": "CONG-01-A3", "claim": "Check Genetic Studies", "timing": "At booking", "category": "test", "source_column": "Examinations and tests", "guideline_reference": "ANTENATAL CARE SCHEDULE.pdf"},
+        {"arg_id": "CONG-01-A4", "claim": "16 week and 20-week HRAN and then according to FMU plan", "timing": "16, 20 weeks", "category": "ultrasound", "source_column": "Ultrasound scan", "guideline_reference": "ANTENATAL CARE SCHEDULE.pdf"}
+      ]
+    },
+    {
+      "condition_id": "PET-01",
+      "condition_name": "Previous PET",
+      "criteria": "History of pre-eclampsia in prior pregnancy",
+      "source_page": 8,
+      "source_section": "Previous PET",
+      "source_reference_file": "202601301510290.Antenatal Hypertension Pregnancy V5.1.pdf",
+      "arguments": [
+        {"arg_id": "PET-01-A1", "claim": "12 weeks – start Aspirin 150 mg", "timing": "12 weeks", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "202601301510290.Antenatal Hypertension Pregnancy V5.1.pdf"},
+        {"arg_id": "PET-01-A2", "claim": "Obstetrician ANC within 2 weeks of booking appointment", "timing": "Within 2 weeks of booking", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "202601301510290.Antenatal Hypertension Pregnancy V5.1.pdf"},
+        {"arg_id": "PET-01-A3", "claim": "Individualised plan", "timing": "Throughout pregnancy", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "202601301510290.Antenatal Hypertension Pregnancy V5.1.pdf"},
+        {"arg_id": "PET-01-A4", "claim": "Digital BP SHOULD BE USED AT ALL TIMES", "timing": "All visits", "category": "test", "source_column": "Examinations and tests", "guideline_reference": "202601301510290.Antenatal Hypertension Pregnancy V5.1.pdf"},
+        {"arg_id": "PET-01-A5", "claim": "Anomaly + uterine artery doppler: Normal UA PI + EFW>10 – serial scan from 32 weeks; Abnormal UA PI + EFW>10 – serial scan from 28 (every 2-4 weeks); Normal UA PI + EFW<10 – serial scan 26-28 weeks (individualised); Abnormal UA PI + EFW<10 – FMU", "timing": "20 weeks + as indicated", "category": "ultrasound", "source_column": "Ultrasound scan", "guideline_reference": "202601301510290.Antenatal Hypertension Pregnancy V5.1.pdf"}
+      ]
+    },
+    {
+      "condition_id": "RTN-01",
+      "condition_name": "Routine care - low risk pregnancy",
+      "criteria": "All pregnant women without additional risk factors",
+      "source_page": 9,
+      "source_section": "Routine care",
+      "source_reference_file": "202512191144050.Maternal Antenatal screening tests Guidelines v5.1.pdf",
+      "arguments": [
+        {"arg_id": "RTN-01-A1", "claim": "All pregnant women. 1st trimester – booking, SGA and VTE risk assessment, vaccine information", "timing": "Booking", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "202512191144050.Maternal Antenatal screening tests Guidelines v5.1.pdf"},
+        {"arg_id": "RTN-01-A2", "claim": "16 weeks (14-18 weeks) - Mode of birth discussion", "timing": "16 weeks", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "202512191144050.Maternal Antenatal screening tests Guidelines v5.1.pdf"},
+        {"arg_id": "RTN-01-A3", "claim": "25 weeks (Primiparous only)", "timing": "25 weeks", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "202512191144050.Maternal Antenatal screening tests Guidelines v5.1.pdf"},
+        {"arg_id": "RTN-01-A4", "claim": "28 weeks", "timing": "28 weeks", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "202512191144050.Maternal Antenatal screening tests Guidelines v5.1.pdf"},
+        {"arg_id": "RTN-01-A5", "claim": "31 weeks (Primiparous only)", "timing": "31 weeks", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "202512191144050.Maternal Antenatal screening tests Guidelines v5.1.pdf"},
+        {"arg_id": "RTN-01-A6", "claim": "34 weeks – OASI", "timing": "34 weeks", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "202512191144050.Maternal Antenatal screening tests Guidelines v5.1.pdf"},
+        {"arg_id": "RTN-01-A7", "claim": "36 weeks", "timing": "36 weeks", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "202512191144050.Maternal Antenatal screening tests Guidelines v5.1.pdf"},
+        {"arg_id": "RTN-01-A8", "claim": "38 weeks", "timing": "38 weeks", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "202512191144050.Maternal Antenatal screening tests Guidelines v5.1.pdf"},
+        {"arg_id": "RTN-01-A9", "claim": "40 weeks (Primiparous only). Offer IOL for 41 weeks", "timing": "40-41 weeks", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "202512191144050.Maternal Antenatal screening tests Guidelines v5.1.pdf"},
+        {"arg_id": "RTN-01-A10", "claim": "Booking bloods and Random blood sugar (RBS), MSU, BP. Fetal cell free DNA if Rh –ve. Book anti-D if needed", "timing": "Booking", "category": "test", "source_column": "Examinations and tests", "guideline_reference": "202512191144050.Maternal Antenatal screening tests Guidelines v5.1.pdf"},
+        {"arg_id": "RTN-01-A11", "claim": "At 28 weeks: FBC and G&S, Anti-D (if Rh-ve), SFH, LMWH if VTE>3", "timing": "28 weeks", "category": "test", "source_column": "Examinations and tests", "guideline_reference": "202512191144050.Maternal Antenatal screening tests Guidelines v5.1.pdf"},
+        {"arg_id": "RTN-01-A12", "claim": "SFH every visit unless serial scans from 25 weeks", "timing": "Each visit", "category": "test", "source_column": "Examinations and tests", "guideline_reference": "202512191144050.Maternal Antenatal screening tests Guidelines v5.1.pdf"},
+        {"arg_id": "RTN-01-A13", "claim": "34 weeks: FBC", "timing": "34 weeks", "category": "test", "source_column": "Examinations and tests", "guideline_reference": "202512191144050.Maternal Antenatal screening tests Guidelines v5.1.pdf"},
+        {"arg_id": "RTN-01-A14", "claim": "Offer sweep from 39 weeks", "timing": "From 39 weeks", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "202512191144050.Maternal Antenatal screening tests Guidelines v5.1.pdf"},
+        {"arg_id": "RTN-01-A15", "claim": "11+2 – 14+1 - dating + NT (and bloods)", "timing": "11+2 to 14+1 weeks", "category": "ultrasound", "source_column": "Ultrasound scan", "guideline_reference": "202512191144050.Maternal Antenatal screening tests Guidelines v5.1.pdf"},
+        {"arg_id": "RTN-01-A16", "claim": "18+0 - 20+6 - Anomaly + placental location (if low, follow guidelines below)", "timing": "18+0 to 20+6 weeks", "category": "ultrasound", "source_column": "Ultrasound scan", "guideline_reference": "202512191144050.Maternal Antenatal screening tests Guidelines v5.1.pdf"},
+        {"arg_id": "RTN-01-A17", "claim": "Growth scan after 26 weeks if SFH: Plots <10th centile, Static growth (min 2 weeks apart), Growth not following curve. SFH>95th centile: Follow LGA management", "timing": "After 26 weeks", "category": "ultrasound", "source_column": "Ultrasound scan", "guideline_reference": "202512191144050.Maternal Antenatal screening tests Guidelines v5.1.pdf"}
+      ]
+    },
+    {
+      "condition_id": "SGA-01",
+      "condition_name": "SGA baby - EFW/AC <10th centile",
+      "criteria": "EFW/AC < 10th centile",
+      "source_page": 9,
+      "source_section": "SGA baby",
+      "source_reference_file": "202411210723400.FGR Guideline 2024 Hillingdon 2024.pdf",
+      "arguments": [
+        {"arg_id": "SGA-01-A1", "claim": "Booking: assess risk factors for FGR (RCOG risk stratification) +/- Aspirin 150 mg", "timing": "At booking", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "202411210723400.FGR Guideline 2024 Hillingdon 2024.pdf"},
+        {"arg_id": "SGA-01-A2", "claim": "IOL at 39/40 unless any other concerns", "timing": "39/40 weeks", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "202411210723400.FGR Guideline 2024 Hillingdon 2024.pdf"},
+        {"arg_id": "SGA-01-A3", "claim": "Individualised care", "timing": "Throughout pregnancy", "category": "recommendation", "source_column": "Examinations and tests", "guideline_reference": "202411210723400.FGR Guideline 2024 Hillingdon 2024.pdf"},
+        {"arg_id": "SGA-01-A4", "claim": "Follow pathway +/- uterine artery dopplers", "timing": "As per guideline", "category": "ultrasound", "source_column": "Ultrasound scan", "guideline_reference": "202411210723400.FGR Guideline 2024 Hillingdon 2024.pdf"}
+      ]
+    },
+    {
+      "condition_id": "SCD-01",
+      "condition_name": "Sickle cell disease",
+      "criteria": "Diagnosed Sickle Cell Disease",
+      "source_page": 10,
+      "source_section": "Sickle cell disease",
+      "source_reference_file": "202601231300520.Sickle Cell Disease and Pregnancy v5.0.pdf",
+      "arguments": [
+        {"arg_id": "SCD-01-A1", "claim": "Preconception - Folic acid 5 mg daily, stop iron chelators, stop hydroxycarbamide (unless high risk), switch ACE/ARB to safer option", "timing": "Preconception", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "202601231300520.Sickle Cell Disease and Pregnancy v5.0.pdf"},
+        {"arg_id": "SCD-01-A2", "claim": "R/V vaccination – yearly influenza, if pneumococcus >5 years for repeat", "timing": "Preconception / early pregnancy", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "202601231300520.Sickle Cell Disease and Pregnancy v5.0.pdf"},
+        {"arg_id": "SCD-01-A3", "claim": "Booking ideally by 8-10 week + MDT review (Haematologist, Anaesthetic, Maternal medicine)", "timing": "8-10 weeks", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "202601231300520.Sickle Cell Disease and Pregnancy v5.0.pdf"},
+        {"arg_id": "SCD-01-A4", "claim": "Penicillin V 250 mg daily (erythromycin if penicillin allergic)", "timing": "Throughout pregnancy", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "202601231300520.Sickle Cell Disease and Pregnancy v5.0.pdf"},
+        {"arg_id": "SCD-01-A5", "claim": "From 12 weeks – start Aspirin 150 mg", "timing": "From 12 weeks", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "202601231300520.Sickle Cell Disease and Pregnancy v5.0.pdf"},
+        {"arg_id": "SCD-01-A6", "claim": "Monthly joint obstetric/haematology/maternal medicine clinic", "timing": "Monthly", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "202601231300520.Sickle Cell Disease and Pregnancy v5.0.pdf"},
+        {"arg_id": "SCD-01-A7", "claim": "At 28/40: if VTE 3, start LMWH", "timing": "28 weeks", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "202601231300520.Sickle Cell Disease and Pregnancy v5.0.pdf"},
+        {"arg_id": "SCD-01-A8", "claim": "32/40: anaesthetic review, earlier if indicated", "timing": "32 weeks", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "202601231300520.Sickle Cell Disease and Pregnancy v5.0.pdf"},
+        {"arg_id": "SCD-01-A9", "claim": "Consider IOL at 40 weeks", "timing": "40 weeks", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "202601231300520.Sickle Cell Disease and Pregnancy v5.0.pdf"},
+        {"arg_id": "SCD-01-A10", "claim": "BP, urine dipstick and MSU each visit. Repeat FBC, renal and liver function every 4 weeks. If red cell allo-antibodies detected repeat every 4 weeks. Each visit assesses PET/SGA. Treat anaemia ONLY if ferritin is LOW", "timing": "Each visit / every 4 weeks", "category": "test", "source_column": "Examinations and tests", "guideline_reference": "202601231300520.Sickle Cell Disease and Pregnancy v5.0.pdf"},
+        {"arg_id": "SCD-01-A11", "claim": "Growth scan 4 weekly from 24 weeks till delivery", "timing": "From 24 weeks", "category": "ultrasound", "source_column": "Ultrasound scan", "guideline_reference": "202601231300520.Sickle Cell Disease and Pregnancy v5.0.pdf"}
+      ]
+    },
+    {
+      "condition_id": "SMK-01",
+      "condition_name": "Smoker / Vaping",
+      "criteria": "Current smoking or vaping during pregnancy",
+      "source_page": 10,
+      "source_section": "Smoker / Vaping",
+      "source_reference_file": "ANTENATAL CARE SCHEDULE.pdf",
+      "arguments": [
+        {"arg_id": "SMK-01-A1", "claim": "Counselling for smoking cessation", "timing": "At identification", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "ANTENATAL CARE SCHEDULE.pdf"},
+        {"arg_id": "SMK-01-A2", "claim": "32 and 36 weeks Obs ANC for scan", "timing": "32, 36 weeks", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "ANTENATAL CARE SCHEDULE.pdf"},
+        {"arg_id": "SMK-01-A3", "claim": "28 weeks: one off SFH. CO measurements each visit >4 ppm needs reference to NHS stop smoking service.", "timing": "28 weeks / Each visit", "category": "test", "source_column": "Examinations and tests", "guideline_reference": "ANTENATAL CARE SCHEDULE.pdf"},
+        {"arg_id": "SMK-01-A4", "claim": "Growth 4-weekly from 32 weeks till delivery", "timing": "From 32 weeks", "category": "ultrasound", "source_column": "Ultrasound scan", "guideline_reference": "ANTENATAL CARE SCHEDULE.pdf"}
+      ]
+    },
+    {
+      "condition_id": "SYP-01",
+      "condition_name": "Syphilis",
+      "criteria": "Positive syphilis serology (Treponemal test)",
+      "source_page": 10,
+      "source_section": "Syphilis",
+      "source_reference_file": "202212011531480.Management of Positive Syphilis Serology in Pregnancy v.4.0.pdf",
+      "arguments": [
+        {"arg_id": "SYP-01-A1", "claim": "Syphilis screening at booking for all pregnant people (Treponemal serology to detect IgG & IgM, e.g. EIA, CLIA or TPPA)", "timing": "At booking", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "202212011531480.Management of Positive Syphilis Serology in Pregnancy v.4.0.pdf"},
+        {"arg_id": "SYP-01-A2", "claim": "Routine ANC appointments", "timing": "As scheduled", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "202212011531480.Management of Positive Syphilis Serology in Pregnancy v.4.0.pdf"},
+        {"arg_id": "SYP-01-A3", "claim": "Referral to GUM and neonatal care to complete BASHH congenital syphilis birth plan", "timing": "Upon positive screening", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "202212011531480.Management of Positive Syphilis Serology in Pregnancy v.4.0.pdf"},
+        {"arg_id": "SYP-01-A4", "claim": "If treatment <4 weeks prior to delivery – baby requires treatment for congenital syphilis", "timing": "Late pregnancy", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "202212011531480.Management of Positive Syphilis Serology in Pregnancy v.4.0.pdf"},
+        {"arg_id": "SYP-01-A5", "claim": "For treatment refer to guidelines", "timing": "Upon diagnosis", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "202212011531480.Management of Positive Syphilis Serology in Pregnancy v.4.0.pdf"},
+        {"arg_id": "SYP-01-A6", "claim": "If positive either for confirmatory test: 1. send original sample for different treponemal test e.g TPPA or TPHA or 2. send second sample for treponemal serology e.g EIA or CLIA. If confirmatory test +ve -> perform RPR or VDRL. NOTE: notifiable disease", "timing": "Upon positive screening", "category": "test", "source_column": "Examinations and tests", "guideline_reference": "202212011531480.Management of Positive Syphilis Serology in Pregnancy v.4.0.pdf"},
+        {"arg_id": "SYP-01-A7", "claim": "Consider serial growth scans for both early and late infection: if signs of congenital syphilis (e.g hepatosplenomegaly, intrahepatic calcification or non-immune hydrops) for FMU referral", "timing": "As indicated", "category": "ultrasound", "source_column": "Ultrasound scan", "guideline_reference": "202212011531480.Management of Positive Syphilis Serology in Pregnancy v.4.0.pdf"}
+      ]
+    },
+    {
+      "condition_id": "THROM-01",
+      "condition_name": "Thrombocytopenia",
+      "criteria": "Platelets less than 150 (though clinically less than 100)",
+      "source_page": 11,
+      "source_section": "Thrombocytopenia",
+      "source_reference_file": "ANTENATAL CARE SCHEDULE.pdf",
+      "arguments": [
+        {"arg_id": "THROM-01-A1", "claim": "ITP – refer to obstetric medicine at booking", "timing": "At booking", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "ANTENATAL CARE SCHEDULE.pdf"},
+        {"arg_id": "THROM-01-A2", "claim": "For gestational thrombocytopenia, if platelets < 80: refer to obs med. (Bloods needed include FBC, blood film and reticulocyte count, LFT, TFT, DAT, APS ab, ANA, HIV, Hep B and Hep C, Helicobacter pylori and consider vWF Type IIb)", "timing": "Upon detection", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "ANTENATAL CARE SCHEDULE.pdf"},
+        {"arg_id": "THROM-01-A3", "claim": "If platelets < 100, FBC every 2 weeks from 34 weeks or more frequently if drastic drop", "timing": "From 34 weeks", "category": "test", "source_column": "Examinations and tests", "guideline_reference": "ANTENATAL CARE SCHEDULE.pdf"},
+        {"arg_id": "THROM-01-A4", "claim": "No scans indicated", "timing": "N/A", "category": "ultrasound", "source_column": "Ultrasound scan", "guideline_reference": "ANTENATAL CARE SCHEDULE.pdf"}
+      ]
+    },
+    {
+      "condition_id": "TWN-01",
+      "condition_name": "Twins – DCDA",
+      "criteria": "Dichorionic Diamniotic Twin Pregnancy",
+      "source_page": 11,
+      "source_section": "Twins – DCDA",
+      "source_reference_file": "Twin pregnancy guidelines",
+      "arguments": [
+        {"arg_id": "TWN-01-A1", "claim": "16 weeks Obstetric ANC counselling, risk assessment", "timing": "16 weeks", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "Twin pregnancy guidelines"},
+        {"arg_id": "TWN-01-A2", "claim": "Aspirin if another risk factor", "timing": "As indicated", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "Twin pregnancy guidelines"},
+        {"arg_id": "TWN-01-A3", "claim": "Folic acid 5g throughout pregnancy and consider Vitamin D", "timing": "Throughout pregnancy", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "Twin pregnancy guidelines"},
+        {"arg_id": "TWN-01-A4", "claim": "Signpost to TAMBA and MBF websites", "timing": "At diagnosis", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "Twin pregnancy guidelines"},
+        {"arg_id": "TWN-01-A5", "claim": "Shared cared between Obstetric care and Specialist MW", "timing": "Throughout pregnancy", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "Twin pregnancy guidelines"},
+        {"arg_id": "TWN-01-A6", "claim": "If cervical length < 25mm, to consider progesterone pv 400mg once a day till 34 weeks", "timing": "If short cervix detected", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "Twin pregnancy guidelines"},
+        {"arg_id": "TWN-01-A7", "claim": "28 weeks refer to Infant feeding and anaesthetist", "timing": "28 weeks", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "Twin pregnancy guidelines"},
+        {"arg_id": "TWN-01-A8", "claim": "Mode of birth discussion by 34 weeks", "timing": "By 34 weeks", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "Twin pregnancy guidelines"},
+        {"arg_id": "TWN-01-A9", "claim": "Aim for Delivery at 37 weeks", "timing": "37 weeks", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "Twin pregnancy guidelines"},
+        {"arg_id": "TWN-01-A10", "claim": "BP and urine at 20, 24 and 28 weeks then 2-weekly. FBC at 24, 28 and 34 weeks", "timing": "20, 24, 28, 34 weeks", "category": "test", "source_column": "Examinations and tests", "guideline_reference": "Twin pregnancy guidelines"},
+        {"arg_id": "TWN-01-A11", "claim": "Dating scan including chorionicity, NT and aneuploidy. 20 weeks – Anomaly and cervical length. 4-weekly from 24 weeks till birth", "timing": "First trimester + 20 weeks + from 24 weeks", "category": "ultrasound", "source_column": "Ultrasound scan", "guideline_reference": "Twin pregnancy guidelines"}
+      ]
+    },
+    {
+      "condition_id": "TWN-02",
+      "condition_name": "Twins – MCDA",
+      "criteria": "Monochorionic Diamniotic Twin Pregnancy",
+      "source_page": 11,
+      "source_section": "Twins – MCDA",
+      "source_reference_file": "Twin pregnancy guidelines",
+      "arguments": [
+        {"arg_id": "TWN-02-A1", "claim": "Obstetric ANC at 16 weeks and referral to FMU", "timing": "16 weeks", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "Twin pregnancy guidelines"},
+        {"arg_id": "TWN-02-A2", "claim": "Aspirin if another risk factor", "timing": "As indicated", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "Twin pregnancy guidelines"},
+        {"arg_id": "TWN-02-A3", "claim": "Folic acid 5mg throughout pregnancy and consider vitamin D", "timing": "Throughout pregnancy", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "Twin pregnancy guidelines"},
+        {"arg_id": "TWN-02-A4", "claim": "Signpost to TAMBA and MBF websites", "timing": "At diagnosis", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "Twin pregnancy guidelines"},
+        {"arg_id": "TWN-02-A5", "claim": "28 weeks refer to infant feeding and anaesthetist", "timing": "28 weeks", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "Twin pregnancy guidelines"},
+        {"arg_id": "TWN-02-A6", "claim": "If cervical length < 25mm to consider progesterone pv 400mg once a day until 34 weeks", "timing": "If short cervix detected", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "Twin pregnancy guidelines"},
+        {"arg_id": "TWN-02-A7", "claim": "Discuss mode of birth at 32 weeks", "timing": "32 weeks", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "Twin pregnancy guidelines"},
+        {"arg_id": "TWN-02-A8", "claim": "Aim for delivery at 36/40 (36+0 - 36+6)", "timing": "36+0 to 36+6 weeks", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "Twin pregnancy guidelines"},
+        {"arg_id": "TWN-02-A9", "claim": "BP and urine at 20, 24 and 28 weeks then 2-weekly. FBC at 24, 28 and 34 weeks", "timing": "20, 24, 28, 34 weeks", "category": "test", "source_column": "Examinations and tests", "guideline_reference": "Twin pregnancy guidelines"},
+        {"arg_id": "TWN-02-A10", "claim": "Dating scan including chorionicity, NT and aneuploidy, TTTS assessment. Cervical length (single) - 16-20 weeks. 16 weeks and 2 weekly (check for TTTS every scan). 20-22 weeks: anomaly + fetal ECHO. NOTE for MCA PSV from 20 weeks (scans can alternate FMU and routine scan session if no concerns)", "timing": "First trimester + 16-22 weeks + from 20 weeks", "category": "ultrasound", "source_column": "Ultrasound scan", "guideline_reference": "Twin pregnancy guidelines"}
+      ]
+    },
+    {
+      "condition_id": "SUA-01",
+      "condition_name": "Two vessel Cord (single umbilical artery)",
+      "criteria": "Single umbilical artery identified on scan",
+      "source_page": 12,
+      "source_section": "Two vessel Cord",
+      "source_reference_file": "202411210723400.FGR Guideline 2024 Hillingdon 2024.pdf",
+      "arguments": [
+        {"arg_id": "SUA-01-A1", "claim": "Refer for uterine artery doppler at 20-24 weeks", "timing": "20-24 weeks", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "202411210723400.FGR Guideline 2024 Hillingdon 2024.pdf"},
+        {"arg_id": "SUA-01-A2", "claim": "As SGA guidelines", "timing": "Throughout pregnancy", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "202411210723400.FGR Guideline 2024 Hillingdon 2024.pdf"},
+        {"arg_id": "SUA-01-A3", "claim": "Proceed to perform uterine artery doppler at 20-week scan and follow pathway. No referral to FMU if found in isolation", "timing": "20 weeks", "category": "ultrasound", "source_column": "Ultrasound scan", "guideline_reference": "202411210723400.FGR Guideline 2024 Hillingdon 2024.pdf"}
+      ]
+    },
+    {
+      "condition_id": "DM-01",
+      "condition_name": "Type 1 and 2 Diabetes - pre-pregnant Diabetes",
+      "criteria": "Pre-existing Type 1 or Type 2 Diabetes",
+      "source_page": 12,
+      "source_section": "Type 1 and 2 Diabetes",
+      "source_reference_file": "Type 1 and 2 Diabetes – Referral and Antenatal care",
+      "arguments": [
+        {"arg_id": "DM-01-A1", "claim": "Preconception - Folic acid 5 mg till 12 weeks", "timing": "Preconception / early pregnancy", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "Type 1 and 2 Diabetes – Referral and Antenatal care"},
+        {"arg_id": "DM-01-A2", "claim": "Booking appt ideally by 10 weeks", "timing": "<10 weeks", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "Type 1 and 2 Diabetes – Referral and Antenatal care"},
+        {"arg_id": "DM-01-A3", "claim": "11-13+6 – start Aspirin 150 mg", "timing": "11-13+6 weeks", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "Type 1 and 2 Diabetes – Referral and Antenatal care"},
+        {"arg_id": "DM-01-A4", "claim": "16 weeks", "timing": "16 weeks", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "Type 1 and 2 Diabetes – Referral and Antenatal care"},
+        {"arg_id": "DM-01-A5", "claim": "28 weeks – Anti D", "timing": "28 weeks", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "Type 1 and 2 Diabetes – Referral and Antenatal care"},
+        {"arg_id": "DM-01-A6", "claim": "32 weeks – Diabetes Clinic Obstetrician", "timing": "32 weeks", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "Type 1 and 2 Diabetes – Referral and Antenatal care"},
+        {"arg_id": "DM-01-A7", "claim": "36 weeks – Diabetes Clinic Obstetrician for discussion of Mode of Birth and IOL, colostrum harvesting, BMs ante- and postnatal check and postnatal contraception", "timing": "36 weeks", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "Type 1 and 2 Diabetes – Referral and Antenatal care"},
+        {"arg_id": "DM-01-A8", "claim": "37-38+6 weeks – IOL. Consider <37+0 if metabolic or other complications", "timing": "37-38+6 weeks", "category": "recommendation", "source_column": "Antenatal Visits", "guideline_reference": "Type 1 and 2 Diabetes – Referral and Antenatal care"},
+        {"arg_id": "DM-01-A9", "claim": "Add Hb1AC to booking bloods. Retinal assessment if retinopathy OR more than 3 months of previous retinal assessment (repeat in 3 months if positive findings), FBC, HbA1C, VTE assessment. BMs – aim for fasting <5.3 mmol/L and 1hr post meal <7.8 mmol/L", "timing": "Booking / ongoing", "category": "test", "source_column": "Examinations and tests", "guideline_reference": "Type 1 and 2 Diabetes – Referral and Antenatal care"},
+        {"arg_id": "DM-01-A10", "claim": "20 weeks Anomaly – FMU referral if scan incomplete after 1-2 attempts. 4-weekly from 28 weeks till birth – Growth + LV and doppler", "timing": "20 weeks + from 28 weeks", "category": "ultrasound", "source_column": "Ultrasound scan", "guideline_reference": "Type 1 and 2 Diabetes – Referral and Antenatal care"}
+      ]
+    }
+  ]
+}
